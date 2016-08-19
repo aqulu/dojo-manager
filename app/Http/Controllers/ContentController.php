@@ -64,12 +64,12 @@ class ContentController extends Controller
 						'mediaId' => 'required'
 				]);
 				$content->media()->attach($request->mediaId);
-				return $this->edit($content);
+				return redirect('contents/'.$content->id.'/edit');
 		}
 
 		public function removeMedia(Content $content, $mediaId)
 		{
 				$content->media()->detach($mediaId);
-				return $this->edit($content);
+				return redirect('contents/'.$content->id.'/edit');
 		}
 }

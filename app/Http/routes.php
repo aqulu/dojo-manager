@@ -29,3 +29,5 @@ Route::delete('/contents/{content}', 'ContentController@delete');
 
 Route::post('/contents/{content}/media', 'ContentController@addMedia');
 Route::delete('/contents/{content}/media/{mediaId}', 'ContentController@removeMedia');
+
+Route::get('/media', 'MediaController@index');
