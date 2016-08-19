@@ -44,7 +44,6 @@ class CategoryController extends Controller
 				$content->description = $request->description;
 				$content->category_id = $category->id;
 				$content->save();
-				$content->media()->attach($request->media);
 
 				return $this->findByName($request, $category->name);
 		}

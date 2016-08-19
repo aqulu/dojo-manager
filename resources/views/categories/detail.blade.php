@@ -56,19 +56,6 @@
                   </span>
               @endif
           </div>
-					<div class="form-group" id="media">
-							<label class="control-label">Media</label>
-					</div>
-					<button type="button" class="btn btn-default" onclick="addRow()">Add media id</button>
-					<script>
-							var rowNum = 0;
-							function addRow() {
-									rowNum ++;
-									var row = '<input type="text" class="form-control" name="media[' + rowNum + ']">';
-									jQuery('#media').append(row);
-							};
-					</script>
-
 
 					<button type="submit" class="btn btn-primary pull-right">
 						<span class="glyphicon glyphicon-floppy-disk"></span> Save

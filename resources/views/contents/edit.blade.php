@@ -12,7 +12,7 @@
 				</div>
 		</div>
 		@if ($content)
-        <form id="contentfrm" action="{{ url('contents/'.$content->id.'/edit') }}" method="POST">
+        <form id="contentfrm" action="{{ url('contents/'.$content->id) }}" method="POST">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
 
@@ -57,7 +57,7 @@
 			<h2 class="top-margin">Media available</h2>
 			<div class="row">
 					@foreach($allMedia as $m)
-							@include('media/unattached', ['media' => $m])
+							@include('media/unattached', ['media' => $m, 'contentId' => $content->id ])
 					@endforeach
 			</div>
 		@endif

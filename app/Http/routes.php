@@ -23,6 +23,9 @@ Route::post('/categories/{category}/contents', 'CategoryController@addContent');
 
 Route::get('/contents/{content}', 'ContentController@index');
 Route::get('/contents/{content}/edit', 'ContentController@edit');
-Route::put('/contents/{content}/edit', 'ContentController@update');
+
+Route::put('/contents/{content}', 'ContentController@update');
 Route::delete('/contents/{content}', 'ContentController@delete');
+
+Route::post('/contents/{content}/media', 'ContentController@addMedia');
 Route::delete('/contents/{content}/media/{mediaId}', 'ContentController@removeMedia');

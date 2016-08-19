@@ -42,7 +42,6 @@ class ContentController extends Controller
 				$content->name = $request->name;
 				$content->description = $request->description;
 				$content->save();
-				$content->media()->attach($request->media);
 
 				return $this->index($content);
 		}
@@ -57,6 +56,15 @@ class ContentController extends Controller
 				}
 
 				return redirect('categories/'.$categoryName);
+		}
+
+		public function addMedia(Request $request, Content $content)
+		{
+				$this->validate($request, [
+						'mediaId' => 'required'
+				]);
+				$content->media()->attach($request->mediaId);
+				return $this->edit($content);
 		}
 
 		public function removeMedia(Content $content, $mediaId)
