@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.scss"],"names":[],"mappings":"AAEA;EACC,gBAAgB,EAChB","file":"app.css","sourcesContent":["// @import \"node_modules/bootstrap-sass/assets/stylesheets/bootstrap\";\n\n.top-margin {\n\tmargin-top: 10%;\n}\n"],"sourceRoot":"/source/"}
