@@ -31,3 +31,10 @@ Route::post('/contents/{content}/media', 'ContentController@addMedia');
 Route::delete('/contents/{content}/media/{mediaId}', 'ContentController@removeMedia');
 
 Route::get('/media', 'MediaController@index');
+Route::post('/media', 'MediaController@create');
+Route::post('/media/{media}', 'MediaController@delete');
+
+Route::get('/members', 'GroupController@index');
+Route::get('/members/{name}', 'GroupController@findByName');
+
+Route::get('/examprograms', 'ExamProgramController@index');

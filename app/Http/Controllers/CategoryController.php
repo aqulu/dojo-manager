@@ -18,12 +18,12 @@ class CategoryController extends Controller
 				$this->categoryRepo = $categoryRepo;
 		}
 
-		public function index(Request $request)
+		public function index()
 		{
-				return $this->findByName($request, null);
+				return $this->findByName(null);
 		}
 
-		public function findByName(Request $request, $name)
+		public function findByName($name)
 		{
 				$allCategories = $this->categoryRepo->findAll();
 				$activeCategory = ($name) ? $allCategories->where('name', $name)->first() : $allCategories->first();

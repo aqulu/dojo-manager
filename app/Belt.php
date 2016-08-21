@@ -16,5 +16,10 @@ class Belt extends Model
 				return $this->hasMany(User::class);
 		}
 
+		public function label()
+		{
+				return $this->rank . '. ' . $this->type;
+		}
+
 		protected $fillable = ['ordering', 'rank', 'type', 'color_hex'];
 }

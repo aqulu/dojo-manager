@@ -24,6 +24,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+		public function fullname()
+		{
+				return $this->firstname . ' ' . $this->lastname;
+		}
+
 		public function belt()
 		{
 				return $this->belongsTo(Belt::class);
