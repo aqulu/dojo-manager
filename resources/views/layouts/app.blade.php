@@ -27,6 +27,7 @@
                     <li><a href="{{ url('/examprograms') }}">Exams</a></li>
 										@if(Auth::user()->admin)
 		                    <li><a href="{{ url('/users') }}">Members</a></li>
+		                    <li><a href="{{ url('/groups') }}">Groups</a></li>
 										@endif
                 </ul>
 

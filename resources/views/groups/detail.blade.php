@@ -1,4 +1,12 @@
-<h3>{{$group->name}}</h3>
+<form class="form-horizontal" action="{{ url('groups/'.$group->id) }}" method="POST">
+		{{ csrf_field() }}
+		{{ method_field('DELETE') }}
+		<h3>
+				{{$group->name}}
+				<button type="submit" class="btn btn-danger pull-right"><i class="fa fa-btn fa-trash"></i> Delete</button>
+				<a href="{{ url('groups/'.$active->id.'/edit') }}" class="btn btn-default pull-right" role="button"><i class="fa fa-btn fa-pencil"></i> Edit</a>
+		</h3>
+</form>
 <table class="table">
 		<thead>
 				<tr>
@@ -28,10 +36,10 @@
 								</td>
 								@if (Auth::user()->admin)
 										<td>
-												<a href="{{ url('users/'.$user->id.'/edit') }}" class=""><span class="glyphicon glyphicon-pencil"></span>Edit</a>
 								        <form action="{{ url('users/'.$user->id) }}" method="POST">
 								            {{ csrf_field() }}
 								            {{ method_field('DELETE') }}
+														<a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
 								            <button type="submit" class="btn btn-danger">
 								                <i class="fa fa-btn fa-trash"></i> Delete
 								            </button>

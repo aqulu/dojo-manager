@@ -17,8 +17,10 @@ Route::auth();
 Route::group(['middleware' => ['auth']], function() {
 	Route::get('/', 'CategoryController@index');
 	Route::get('/home', 'HomeController@index');
+
 	Route::get('/categories', 'CategoryController@index');
 	Route::get('/categories/{name}', 'CategoryController@findByName');
+
 	Route::get('/contents/{content}', 'ContentController@index');
 
 	Route::get('/media', 'MediaController@index');
@@ -45,4 +47,12 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 	Route::get('/users/{user}/edit', 'UserController@edit');
 	Route::put('/users/{user}', 'UserController@update');
 	Route::delete('/users/{user}', 'UserController@delete');
+
+	Route::get('/groups', 'GroupController@index');
+	Route::get('/groups/new', 'GroupController@createNew');
+	Route::get('/groups/{name}', 'GroupController@findByName');
+	Route::post('/groups', 'GroupController@create');
+	Route::get('/groups/{group}/edit', 'GroupController@edit');
+	Route::put('/groups/{group}', 'GroupController@update');
+	Route::delete('/groups/{group}', 'GroupController@delete');
 });

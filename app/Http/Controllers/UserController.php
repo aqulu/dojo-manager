@@ -46,7 +46,7 @@ class UserController extends Controller
 				} else {
 					$user->belt()->dissociate();
 				}
-				if ($request->grade) {
+				if ($request->group) {
 					$user->group()->associate($request->group);
 				} else {
 					$user->group()->dissociate();
