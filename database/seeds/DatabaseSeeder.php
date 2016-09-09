@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
 				$this->call(GroupsTableSeeder::class);
 				$this->call(ExamProgramsTableSeeder::class);
 				$this->call(UsersTableSeeder::class);
+				$this->call(ContentExamProgramSeeder::class);
     }
 }
 
@@ -72,6 +73,7 @@ class ContentsTableSeeder extends Seeder
 
 				$kataCat = Category::where('name', 'Kata')->first();
 				if ($kataCat) {
+						Content::insert([ 'name' => 'Kihon Kata', 'description' => '', 'category_id' => $kataCat->id ]);
 						Content::insert([ 'name' => 'Pinan Shodan', 'description' => '', 'category_id' => $kataCat->id ]);
 						Content::insert([ 'name' => 'Pinan Nidan', 'description' => '', 'category_id' => $kataCat->id ]);
 						Content::insert([ 'name' => 'Pinan Sandan', 'description' => '', 'category_id' => $kataCat->id ]);
@@ -185,7 +187,6 @@ class ExamProgramsTableSeeder extends Seeder
 		}
 }
 
-
 class UsersTableSeeder extends Seeder
 {
 		public function run()
@@ -195,12 +196,87 @@ class UsersTableSeeder extends Seeder
 				User::insert([
 						'firstname' => 'Admin',
 						'lastname' => 'Admin',
-						'email' => 'admin@aqu.lu',
-						'password' => 'admin12345',
+						'email' => 'me@aqu.lu',
+						'password' => '$2y$10$IywZ13IYEvwQteGtGbiOlOCBIJi7Vs.4FXOsaqHl8tDd6HoHfaks.',
 						'belt_id' => $belt->id,
 						'group_id' => $group->id,
 						'instructor' => true,
 						'admin' => true,
 				]);
+		}
+}
+
+class ContentExamProgramSeeder extends Seeder
+{
+		public function run()
+		{
+				$adults = 'Erwachsene';
+				$kids = 'Kinder';
+				$disabled = 'Insieme';
+
+				$allPrograms = [
+						[
+								'group' => $adults,
+								'ordering' => 1,
+								'contents' => ['Sonobazuki', 'Junzuki', 'Gyakuzuki', 'Jodanuke', 'Sotouke', 'Uchiuke', 'Gedanbarai', 'Kihon Kata']
+						],
+						[
+								'group' => $adults,
+								'ordering' => 2,
+								'contents' => ['Junzuki', 'Gyakuzuki', 'Junzuki no Tsukkomi', 'Pinan Nidan']
+						],
+						[
+								'group' => $adults,
+								'ordering' => 3,
+								'contents' => ['Junzuki', 'Gyakuzuki', 'Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Pinan Shodan']
+						],
+						[
+								'group' => $adults,
+								'ordering' => 4,
+								'contents' => ['Kette Junzuki', 'Kette Gyakuzuki', 'Kette Junzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Pinan Sandan']
+						],
+						[
+								'group' => $adults,
+								'ordering' => 5,
+								'contents' => ['Kette Junzuki', 'Kette Gyakuzuki', 'Kette Junzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Pinan Yondan']
+						],
+						[
+								'group' => $adults,
+								'ordering' => 6,
+								'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Pinan Godan']
+						],
+						[
+								'group' => $adults,
+								'ordering' => 7,
+								'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Pinan Godan', 'Naihanchi']
+						],
+						[
+								'group' => $adults,
+								'ordering' => 8,
+								'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Pinan Godan', 'Kushanku']
+						],
+				];
+
+				foreach ($allPrograms as $program) {
+						$examProgram = $this->findExamProgram($program['group'], $program['ordering']);
+						$this->linkContents($examProgram, $program['contents']);
+				}
+		}
+
+		public function findExamProgram($groupName, $beltOrdering) {
+				return ExamProgram::where([
+						['group_id', Group::where('name', $groupName)->first()->id],
+						['belt_id', Belt::where('ordering', $beltOrdering)->first()->id]
+				])->first();
+		}
+
+		public function linkContents($program, $contentNames)
+		{
+				$contents = Content::whereIn('name', $contentNames)->get(['id']);
+				// foreach ($contents as $content) {
+				// 		error_log($content);
+				// }
+				$program->contents()->attach($contents);
+				$program->save();
 		}
 }

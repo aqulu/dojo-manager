@@ -35,6 +35,7 @@ class ExamProgramController extends Controller
 		{
 				$belt = ($request->beltId) ? $this->beltRepo->findById($request->beltId) : $this->beltRepo->findNext($request->user()->belt);
 				$group = ($request->groupName) ? $this->groupRepo->findByName($request->groupName) : $request->user()->group;
+				
 				return view('examprograms.index', [
 					'groups' => $this->groupRepo->all(),
 					'belts' => $this->beltRepo->all(),
@@ -52,8 +53,13 @@ class ExamProgramController extends Controller
 				]);
 		}
 
-		public function update(ExamProgram $program)
+		public function update(Request $request, ExamProgram $program)
 		{
+				if ($request->contents) {
+						foreach($request->contents as $content) {
+								error_log($content);
+						}
+				}
 				return redirect('examprograms?groupName='.$program->group->name.'&beltId='.$program->belt->id);
 		}
 
