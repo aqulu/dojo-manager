@@ -11,6 +11,7 @@ Second approach to create a dojo-management software, formerly run as project "o
 
 ## Setup
 
+    composer install
     npm install
     php artisan migrate
     gulp
