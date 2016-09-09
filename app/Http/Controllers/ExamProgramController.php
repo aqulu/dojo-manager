@@ -52,4 +52,9 @@ class ExamProgramController extends Controller
 				]);
 		}
 
+		public function update(ExamProgram $program)
+		{
+				return redirect('examprograms?groupName='.$program->group->name.'&beltId='.$program->belt->id);
+		}
+
 }

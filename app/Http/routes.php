@@ -57,4 +57,5 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 	Route::delete('/groups/{group}', 'GroupController@delete');
 
 	Route::get('/examprograms/{program}/edit', 'ExamProgramController@edit');
+	Route::put('/examprograms/{program}', 'ExamProgramController@update');
 });

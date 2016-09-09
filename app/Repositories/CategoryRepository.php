@@ -12,7 +12,7 @@ class CategoryRepository
 				return $categories;
 		}
 
-		public function findAll()
+		public function all()
 		{
 			return Category::all();
 		}

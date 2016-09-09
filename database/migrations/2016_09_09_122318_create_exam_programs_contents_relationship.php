@@ -12,7 +12,7 @@ class CreateExamProgramsContentsRelationship extends Migration
      */
     public function up()
     {
-        Schema::create('exam_program_content', function (Blueprint $table) {
+        Schema::create('content_exam_program', function (Blueprint $table) {
 						$table->integer('exam_program_id')->unsigned()->index();
             $table->integer('content_id')->unsigned()->index();
 						$table->primary(array('exam_program_id', 'content_id'));
@@ -26,6 +26,6 @@ class CreateExamProgramsContentsRelationship extends Migration
      */
     public function down()
     {
-        Schema::drop('exam_program_content');
+        Schema::drop('content_exam_program');
     }
 }
