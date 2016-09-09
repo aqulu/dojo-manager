@@ -4,15 +4,15 @@ Second approach to create a dojo-management software, formerly run as project "o
 
 
 ## Prerequisites
-  
+
     PHP 5.5 or newer
     composer
     Database of your choice (mariadb)
 
 ## Setup
-
+		mkdir bootstrap/cache (composer install fails in my case, if I don't do this)
     composer install
     npm install
-    php artisan migrate
+    php artisan migrate --seed
     gulp
     php arisan serve
