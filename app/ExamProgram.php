@@ -17,4 +17,9 @@ class ExamProgram extends Model
 		{
 				return $this->belongsTo(Group::class);
 		}
+
+		public function contents()
+		{
+				return $this->belongsToMany('App\Content');
+		}
 }
