@@ -5,6 +5,9 @@ use Illuminate\Database\Seeder;
 use App\Belt;
 use App\Category;
 use App\Content;
+use App\ExamProgram;
+use App\Group;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +21,9 @@ class DatabaseSeeder extends Seeder
 				$this->call(CategoriesTableSeeder::class);
 				$this->call(ContentsTableSeeder::class);
 				$this->call(BeltsTableSeeder::class);
+				$this->call(GroupsTableSeeder::class);
+				$this->call(ExamProgramsTableSeeder::class);
+				$this->call(UsersTableSeeder::class);
     }
 }
 
@@ -53,6 +59,10 @@ class ContentsTableSeeder extends Seeder
 						Content::insert([ 'name' => 'Kette Gyakuzuki no Tsukkomi', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Tobikomizuki', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Nagashizuki', 'description' => '', 'category_id' => $kihonCat->id ]);
+						Content::insert([ 'name' => 'Jodanuke', 'description' => '', 'category_id' => $kihonCat->id ]);
+						Content::insert([ 'name' => 'Gedanbarai', 'description' => '', 'category_id' => $kihonCat->id ]);
+						Content::insert([ 'name' => 'Uchiuke', 'description' => '', 'category_id' => $kihonCat->id ]);
+						Content::insert([ 'name' => 'Sotouke', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Maegeri', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Mawashigeri', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Sokutogeri', 'description' => '', 'category_id' => $kihonCat->id ]);
@@ -148,5 +158,49 @@ class BeltsTableSeeder extends Seeder
 							'color_hex' => '#000000'
 						]);
 				}
+		}
+}
+
+class GroupsTableSeeder extends Seeder
+{
+		public function run()
+		{
+				Group::insert(['name' => 'Erwachsene']);
+				Group::insert(['name' => 'Kinder']);
+				Group::insert(['name' => 'Insieme']);
+		}
+}
+
+class ExamProgramsTableSeeder extends Seeder
+{
+		public function run()
+		{
+				$groups = Group::all();
+				$belts = Belt::all();
+				foreach ($groups as $group) {
+						foreach ($belts as $belt) {
+								ExamProgram::insert(['group_id' => $group->id, 'belt_id' => $belt->id]);
+						}
+				}
+		}
+}
+
+
+class UsersTableSeeder extends Seeder
+{
+		public function run()
+		{
+				$group = Group::where('name', 'Erwachsene')->first();
+				$belt = Belt::where([['rank', 3], ['type', 'Dan']])->first();
+				User::insert([
+						'firstname' => 'Admin',
+						'lastname' => 'Admin',
+						'email' => 'admin@aqu.lu',
+						'password' => 'admin12345',
+						'belt_id' => $belt->id,
+						'group_id' => $group->id,
+						'instructor' => true,
+						'admin' => true,
+				]);
 		}
 }

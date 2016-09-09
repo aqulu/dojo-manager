@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExamprogramsTable extends Migration
+class CreateExamProgramsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateExamprogramsTable extends Migration
      */
     public function up()
     {
-        Schema::create('examprograms', function (Blueprint $table) {
+        Schema::create('exam_programs', function (Blueprint $table) {
             $table->integer('belt_id')->unsigned()->index();
             $table->integer('group_id')->unsigned()->index();
 						$table->primary(array('belt_id', 'group_id'));
@@ -27,6 +27,6 @@ class CreateExamprogramsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('examprograms');
+        Schema::drop('exam_programs');
     }
 }

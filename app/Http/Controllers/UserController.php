@@ -19,9 +19,9 @@ class UserController extends Controller
 		protected $groupRepo;
 		protected $beltRepo;
 
-		public function __construct(UserRepository $userRepo, GroupRepository, $groupRepo, BeltRepository $beltRepo)
+		public function __construct(UserRepository $userRepo, GroupRepository $groupRepo, BeltRepository $beltRepo)
 		{
-				$this->$userRepo = $userRepo;
+				$this->userRepo = $userRepo;
 				$this->groupRepo = $groupRepo;
 				$this->beltRepo = $beltRepo;
 		}

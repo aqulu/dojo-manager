@@ -3,7 +3,8 @@
 namespace App\Repositories;
 
 use App\ExamProgram;
-use App\User;
+use App\Belt;
+use App\Group;
 
 class ExamProgramRepository
 {

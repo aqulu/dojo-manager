@@ -8,6 +8,7 @@ use App\Http\Requests;
 
 use App\Repositories\BeltRepository;
 use App\Repositories\GroupRepository;
+use App\Repositories\ExamProgramRepository;
 use App\Belt;
 use App\Group;
 use App\User;
@@ -18,7 +19,7 @@ class ExamProgramController extends Controller
 		protected $beltRepo;
 		protected $groupRepo;
 
-		public function __construct(ExamProgramRepo $examProgramRepo, BeltRepository $beltRepo, GroupRepository $groupRepo)
+		public function __construct(ExamProgramRepository $examProgramRepo, BeltRepository $beltRepo, GroupRepository $groupRepo)
 		{
 				$this->beltRepo = $beltRepo;
 				$this->groupRepo = $groupRepo;
@@ -32,7 +33,7 @@ class ExamProgramController extends Controller
 				return view('examprograms.index', [
 					'groups' => $this->groupRepo->all(),
 					'belts' => $this->beltRepo->all(),
-					'program' => $this->examProgramRepo->find($belt, $request->user()->group)
+					'program' => $this->examProgramRepo->find($belt, $group)
 				]);
 		}
 
