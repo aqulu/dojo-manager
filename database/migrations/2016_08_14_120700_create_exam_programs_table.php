@@ -13,7 +13,7 @@ class CreateExamProgramsTable extends Migration
     public function up()
     {
         Schema::create('exam_programs', function (Blueprint $table) {
-						$table->integer('id')->unsigned()->index();
+						$table->increments('id');
             $table->integer('belt_id')->unsigned()->index();
             $table->integer('group_id')->unsigned()->index();
             $table->string('description');

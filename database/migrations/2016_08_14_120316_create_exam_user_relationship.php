@@ -15,7 +15,6 @@ class CreateExamUserRelationship extends Migration
         Schema::create('exam_user', function (Blueprint $table) {
             $table->integer('exam_id')->unsigned()->index();
             $table->integer('user_id')->unsigned()->index();
-						$table->primary(array('exam_id', 'user_id'));
             $table->timestamps();
         });
     }
