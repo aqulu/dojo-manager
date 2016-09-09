@@ -39,7 +39,7 @@
 		@if($program)
 				<h1>
 					{{ $program->belt->label() }} {{ $program->group->name }}
-					<a href="{{ url('examprograms/'.$program->group->name.'/'.$program->belt->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil"></i></button>
+					<a href="{{ url('examprograms/'.$program->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
 				</h1>
 		@endif
 </div>

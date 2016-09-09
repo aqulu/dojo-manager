@@ -15,4 +15,9 @@ class ExamProgramRepository
 							['belt_id', $belt->id]
 					])->first();
 		}
+
+		public function findById($id)
+		{
+				return ExamProgram::find($id);
+		}
 }

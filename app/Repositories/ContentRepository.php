@@ -11,8 +11,8 @@ class ContentRepository
 				return Content::with('category')->findOrFail($id);
 		}
 
-		public function findAll()
+		public function all()
 		{
-			return Content::all();
+			return Content::orderBy('category_id')->get();
 		}
 }

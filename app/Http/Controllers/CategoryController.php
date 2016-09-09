@@ -24,7 +24,7 @@ class CategoryController extends Controller
 
 		public function findByName($name)
 		{
-				$allCategories = $this->categoryRepo->findAll();
+				$allCategories = $this->categoryRepo->all();
 				$activeCategory = ($name) ? $allCategories->where('name', $name)->first() : $allCategories->first();
 		    return view('categories.index', [
 		        'categories' => $allCategories,
