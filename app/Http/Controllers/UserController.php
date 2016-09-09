@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Repositories\UserRepository;
+use App\Repositories\BeltRepository;
+use App\Repositories\GroupRepository;
 use App\User;
 use App\Belt;
 use App\Group;
@@ -12,11 +15,20 @@ use App\Group;
 
 class UserController extends Controller
 {
+		protected $userRepo;
+		protected $groupRepo;
+		protected $beltRepo;
+
+		public function __construct(UserRepository $userRepo, GroupRepository, $groupRepo, BeltRepository $beltRepo)
+		{
+				$this->$userRepo = $userRepo;
+				$this->groupRepo = $groupRepo;
+				$this->beltRepo = $beltRepo;
+		}
 
 		public function index()
 		{
-				$users = User::orderBy('group_id')->orderBy('lastname')->get();
-				return view('users.index', ['users' => $users]);
+				return view('users.index', ['users' => $this->userRepo->all()]);
 		}
 
 		public function detail(User $user)
@@ -26,8 +38,8 @@ class UserController extends Controller
 
 		public function edit(User $user)
 		{
-				$groups = Group::all();
-				$belts = Belt::orderBy('ordering')->get();
+				$groups = $this->groupRepo->all();
+				$belts = $this->beltRepo->all();
 				return view('users.edit', ['user' => $user, 'belts' => $belts, 'groups' => $groups]);
 		}
 

@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Repositories\GroupRepository;
 use App\Group;
 
 class GroupController extends Controller
 {
+		protected $groupRepo;
+
+		public function __construct(GroupRepository $groupRepo)
+		{
+				$this->groupRepo = $groupRepo;
+		}
 
 		public function index()
 		{
@@ -17,8 +24,9 @@ class GroupController extends Controller
 
 		public function findByName($name)
 		{
-				$groups = Group::all();
-				$activeGroup = ($name) ? $groups->where('name', $name)->first() : $groups->first();
+				$groups = $this->groupRepo->all();
+				$activeGroup = ($name) ? $groupRepo->findByName($name) : $groups->first();
+
 		    return ($activeGroup === null) ?
 						redirect('groups/new') :
 						view('groups.index', [
@@ -47,9 +55,8 @@ class GroupController extends Controller
 
 		public function edit(Group $group)
 		{
-				$groups = Group::all();
 		    return view('groups.edit', [
-		        'groups' => $groups,
+		        'groups' => $this->groupRepo->all(),
 						'active' => $group
 		    ]);
 		}
@@ -61,7 +68,7 @@ class GroupController extends Controller
 				]);
 				$group->name = $request->name;
 				$group->save();
-				
+
 				return redirect('groups/'.$group->name);
 		}
 
