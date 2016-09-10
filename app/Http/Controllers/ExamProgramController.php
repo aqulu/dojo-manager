@@ -11,6 +11,7 @@ use App\Repositories\GroupRepository;
 use App\Repositories\ExamProgramRepository;
 use App\Repositories\ContentRepository;
 use App\ExamProgram;
+use App\ExamProgramEntry;
 use App\Belt;
 use App\Group;
 use App\User;
@@ -35,7 +36,7 @@ class ExamProgramController extends Controller
 		{
 				$belt = ($request->beltId) ? $this->beltRepo->findById($request->beltId) : $this->beltRepo->findNext($request->user()->belt);
 				$group = ($request->groupName) ? $this->groupRepo->findByName($request->groupName) : $request->user()->group;
-				
+
 				return view('examprograms.index', [
 					'groups' => $this->groupRepo->all(),
 					'belts' => $this->beltRepo->all(),
@@ -57,10 +58,19 @@ class ExamProgramController extends Controller
 		{
 				if ($request->contents) {
 						foreach($request->contents as $content) {
-								error_log($content);
+								ExamProgramEntry::insert([
+										'content_id' => $content,
+										'exam_program_id' => $program->id,
+										'ordering' => $program->entries->count() + 1
+								]);
 						}
 				}
 				return redirect('examprograms?groupName='.$program->group->name.'&beltId='.$program->belt->id);
 		}
 
+		public function delete(ExamProgram $program, ExamProgramEntry $entry)
+		{
+				$entry->delete();
+				return redirect('examprograms/'.$program->id.'/edit');
+		}
 }

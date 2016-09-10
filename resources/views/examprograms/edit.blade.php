@@ -20,15 +20,13 @@
 										<tbody>
 												@foreach ($program->entries as $entry)
 														<tr>
-																<td>{{$entry->content->name}}</td>
-																<td>{{$entry->content->description}}</td>
-																<td>
+																<td class="col-md-3">{{$entry->content->name}}</td>
+																<td class="col-md-8">{{$entry->content->description}}</td>
+																<td class="col-md-1">
 														        <form action="{{ url('examprograms/'.$program->id.'/entries/'.$entry->id) }}" method="POST">
 														            {{ csrf_field() }}
 														            {{ method_field('DELETE') }}
-														            <button type="submit" class="btn btn-danger">
-														                <i class="fa fa-btn fa-trash"></i> Remove
-														            </button>
+														            <button type="submit" class="btn btn-danger"><i class="fa fa-minus"></i></button>
 														        </form>
 																</td>
 														</tr>
@@ -69,12 +67,12 @@
 																}
 																rowId++;
 																var row = 	'<tr id="contentrow-' + rowId + '">' +
-																							'<td>' +
+																							'<td class="col-md-3">' +
 																								name +
 																								'<input type="hidden" name="contents[' + rowId + ']" value="' + contentId + '">'+
 																							'</td>' +
-																							'<td>' + description + '</td>' +
-																							'<td>' +
+																							'<td class="col-md-8">' + description + '</td>' +
+																							'<td class="col-md-1">' +
 																								'<button type="button" class="btn btn-danger" onclick="removeRow(' + rowId + ')"><i class="fa fa-minus"></span></button>'
 																							'</td>' +
 																						'</tr>';
