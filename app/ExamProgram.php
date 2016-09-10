@@ -20,6 +20,6 @@ class ExamProgram extends Model
 
 		public function entries()
 		{
-				return $this->hasMany(ExamProgramEntry::class, 'exam_program_id');
+				return $this->hasMany(ExamProgramEntry::class)->orderBy('ordering');
 		}
 }

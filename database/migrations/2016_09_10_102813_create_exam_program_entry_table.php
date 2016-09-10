@@ -12,7 +12,7 @@ class CreateExamProgramEntryTable extends Migration
      */
     public function up()
     {
-				Schema::drop('content_exam_program');
+				Schema::dropIfExists('content_exam_program');
         Schema::create('exam_program_entries', function (Blueprint $table) {
             $table->increments('id');
 						$table->integer('exam_program_id')->unsigned()->index();

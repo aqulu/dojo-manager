@@ -361,11 +361,11 @@ class ContentExamProgramSeeder extends Seeder
 
 		public function linkContents($program, $contentNames)
 		{
-				$contents = Content::whereIn('name', $contentNames)->get(['id']);
 				$i = 1;
-				foreach ($contents as $contentId) {
+				foreach ($contentNames as $contentName) {
+						$content = Content::where('name', $contentName)->first();
 						ExamProgramEntry::insert([
-							'content_id' => $contentId,
+							'content_id' => $content->id,
 							'exam_program_id' => $program->id,
 							'ordering' => $i
 						]);
