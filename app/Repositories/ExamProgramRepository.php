@@ -18,6 +18,6 @@ class ExamProgramRepository
 
 		public function findById($id)
 		{
-				return ExamProgram::find($id);
+				return ExamProgram::with(['entries'])->find($id);
 		}
 }

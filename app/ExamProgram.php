@@ -18,8 +18,8 @@ class ExamProgram extends Model
 				return $this->belongsTo(Group::class);
 		}
 
-		public function contents()
+		public function entries()
 		{
-				return $this->belongsToMany('App\Content');
+				return $this->hasMany(ExamProgramEntry::class, 'exam_program_id');
 		}
 }

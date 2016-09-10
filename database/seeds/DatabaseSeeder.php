@@ -6,6 +6,7 @@ use App\Belt;
 use App\Category;
 use App\Content;
 use App\ExamProgram;
+use App\ExamProgramEntry;
 use App\Group;
 use App\User;
 
@@ -64,6 +65,7 @@ class ContentsTableSeeder extends Seeder
 						Content::insert([ 'name' => 'Gedanbarai', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Uchiuke', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Sotouke', 'description' => '', 'category_id' => $kihonCat->id ]);
+						Content::insert([ 'name' => 'Shutouke', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Maegeri', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Mawashigeri', 'description' => '', 'category_id' => $kihonCat->id ]);
 						Content::insert([ 'name' => 'Sokutogeri', 'description' => '', 'category_id' => $kihonCat->id ]);
@@ -89,6 +91,61 @@ class ContentsTableSeeder extends Seeder
 						Content::insert([ 'name' => 'Wanshu', 'description' => '', 'category_id' => $kataCat->id ]);
 						Content::insert([ 'name' => 'Bassai', 'description' => '', 'category_id' => $kataCat->id ]);
 						Content::insert([ 'name' => 'Rohai', 'description' => '', 'category_id' => $kataCat->id ]);
+				}
+
+				$kumiteCat = Category::where('name', 'Kumite')->first();
+				if ($kumiteCat) {
+						Content::insert([ 'name' => 'Sanbon Kumite 1', 'description' => 'Jodan Junzuki/Jodanuke-Gyakuzuki', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite 2', 'description' => 'Chudan Junzuki/Chudan Uchiuke-Enpi', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite Kinder 2', 'description' => 'Chudan Junzuki/Chudan Uchiuke-Gyakuzuki', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite 3', 'description' => 'Chudan Junzuki/Sotouke-Maegeri-Gyakuzuki', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite 4', 'description' => 'Jodan Junzuki/Jodan Uchiuke-Gyakuzuki', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite 5', 'description' => 'Maegeri/Sukuiuke-Gyakuzuki', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite 6', 'description' => 'Mawashigeri/ Jodan Uchiuke-Gyakuzuki', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite 7', 'description' => 'Jodan Junzuki/Jodan Uchiuke-Haishuuke-Jodan Urazuki', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite 8', 'description' => 'Maegeri/Gedanbarai-Gyakuzuki', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite 9', 'description' => 'Chudan Junzuki/Chudanbarai-Uraken-Gyakuzuki', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Sanbon Kumite 10', 'description' => 'Jodan Junzuki/Shutouke-Haltegriff-Uraken', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Ipponme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Nihonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Sanbonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Yohonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Gohonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Ropponme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Nanahonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Hachihonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Kyuhonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Ohyo Kumite Jupponme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Ipponme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Nihonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Sanbonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Yohonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Gohonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Ropponme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Nanahonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Hachihonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Kyuhonme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+						Content::insert([ 'name' => 'Kihon Kumite Jupponme', 'description' => '', 'category_id' => $kumiteCat->id ]);
+				}
+
+				$renzokuwazaCat = Category::where('name', 'Renzokuwaza')->first();
+				if ($renzokuwazaCat) {
+						Content::insert([ 'name' => 'Orangegurt', 'description' => 'Maegeri/Mawashigeri/Gyakuzuki', 'category_id' => $renzokuwazaCat->id ]);
+						Content::insert([ 'name' => 'Grüngurt', 'description' => 'Tobikomizuki/Maegeri/Gyakuzuki', 'category_id' => $renzokuwazaCat->id ]);
+						Content::insert([ 'name' => 'Blaugurt', 'description' => 'Tobikomizuki/Maegeri/Mawashigeri/Gyakuzuki', 'category_id' => $renzokuwazaCat->id ]);
+						Content::insert([ 'name' => 'Blaugurt Kinder', 'description' => 'Jodanuke (Zenkutsudachi)/ Gedanbarai (Shikodashi)/Sotouke (Mahanmninekoashidashi)', 'category_id' => $renzokuwazaCat->id ]);
+						Content::insert([ 'name' => 'Violettgurt', 'description' => 'Maegeri/Mawashigeri/Ushirogeri/Gyakuzuki', 'category_id' => $renzokuwazaCat->id ]);
+						Content::insert([ 'name' => 'Braungurt 1', 'description' => 'Surikomi Maegeri/Gyakuzuki/Mawashigeri', 'category_id' => $renzokuwazaCat->id ]);
+						Content::insert([ 'name' => 'Braungurt 2', 'description' => 'Surikomi Sokutogeri/Ushirogeri/Mawashigeri/Gyakuzuki', 'category_id' => $renzokuwazaCat->id ]);
+						Content::insert([ 'name' => 'Braungurt Kinder 2', 'description' => 'Surikomi Maegeri/Gyakuzuki/Mawashigeri/Gyakuzuki', 'category_id' => $renzokuwazaCat->id ]);
+						Content::insert([ 'name' => 'Braungurt 3', 'description' => 'Surikomi Sokutogeri/Ushirogeri/Mawashigeri/Gyakuzuki/Uraken', 'category_id' => $renzokuwazaCat->id ]);
+				}
+
+				$miscCat = Category::where('name', 'Diverses')->first();
+				if ($miscCat) {
+						Content::insert([ 'name' => 'Freikata', 'description' => '', 'category_id' => $miscCat->id ]);
+						Content::insert([ 'name' => 'Gurtbinden', 'description' => '', 'category_id' => $miscCat->id ]);
+						Content::insert([ 'name' => 'Jiyu Kumite', 'description' => 'Freikampf', 'category_id' => $miscCat->id ]);
 				}
 		}
 }
@@ -210,56 +267,88 @@ class ContentExamProgramSeeder extends Seeder
 {
 		public function run()
 		{
-				$adults = 'Erwachsene';
-				$kids = 'Kinder';
-				$disabled = 'Insieme';
-
-				$allPrograms = [
+				$all = [
 						[
-								'group' => $adults,
-								'ordering' => 1,
-								'contents' => ['Sonobazuki', 'Junzuki', 'Gyakuzuki', 'Jodanuke', 'Sotouke', 'Uchiuke', 'Gedanbarai', 'Kihon Kata']
+								'group' => 'Erwachsene',
+								'programs' => [
+										[
+												'ordering' => 1,
+												'contents' => ['Sonobazuki', 'Junzuki', 'Gyakuzuki', 'Jodanuke', 'Sotouke', 'Uchiuke', 'Gedanbarai', 'Sanbon Kumite 1', 'Sanbon Kumite 2', 'Kihon Kata']
+										],
+										[
+												'ordering' => 2,
+												'contents' => ['Junzuki', 'Gyakuzuki', 'Junzuki no Tsukkomi', 'Orangegurt', 'Sanbon Kumite 3', 'Sanbon Kumite 4', 'Ohyo Kumite Ipponme', 'Pinan Nidan']
+										],
+										[
+												'ordering' => 3,
+												'contents' => ['Junzuki', 'Gyakuzuki', 'Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Grüngurt', 'Sanbon Kumite 5', 'Sanbon Kumite 6', 'Ohyo Kumite Nihonme', 'Pinan Shodan']
+										],
+										[
+												'ordering' => 4,
+												'contents' => ['Kette Junzuki', 'Kette Gyakuzuki', 'Kette Junzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Blaugurt', 'Sanbon Kumite 7', 'Sanbon Kumite 8', 'Ohyo Kumite Sanbonme', 'Pinan Sandan']
+										],
+										[
+												'ordering' => 5,
+												'contents' => ['Kette Junzuki', 'Kette Gyakuzuki', 'Kette Junzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Violettgurt', 'Sanbon Kumite 9', 'Sanbon Kumite 10', 'Ohyo Kumite Yohonme', 'Pinan Yondan']
+										],
+										[
+												'ordering' => 6,
+												'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Braungurt 1', 'Ohyo Kumite Gohonme', 'Ohyo Kumite Ropponme', 'Kihon Kumite Ipponme', 'Kihon Kumite Nihonme', 'Pinan Godan', 'Freikata']
+										],
+										[
+												'ordering' => 7,
+												'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Pinan Godan', 'Braungurt 2', 'Ohyo Kumite Ropponme', 'Ohyo Kumite Nanahonme', 'Kihon Kumite Ipponme', 'Kihon Kumite Nihonme', 'Kihon Kumite Sanbonme', 'Pinan Godan', 'Naihanchi', 'Freikata']
+										],
+										[
+												'ordering' => 8,
+												'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Pinan Godan', 'Braungurt 3', 'Ohyo Kumite Ropponme', 'Ohyo Kumite Nanahonme', 'Kihon Kumite Ipponme', 'Kihon Kumite Nihonme', 'Kihon Kumite Sanbonme', 'Pinan Godan', 'Kushanku', 'Freikata', 'Freikata']
+										],
+								]
 						],
 						[
-								'group' => $adults,
-								'ordering' => 2,
-								'contents' => ['Junzuki', 'Gyakuzuki', 'Junzuki no Tsukkomi', 'Pinan Nidan']
-						],
-						[
-								'group' => $adults,
-								'ordering' => 3,
-								'contents' => ['Junzuki', 'Gyakuzuki', 'Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Pinan Shodan']
-						],
-						[
-								'group' => $adults,
-								'ordering' => 4,
-								'contents' => ['Kette Junzuki', 'Kette Gyakuzuki', 'Kette Junzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Pinan Sandan']
-						],
-						[
-								'group' => $adults,
-								'ordering' => 5,
-								'contents' => ['Kette Junzuki', 'Kette Gyakuzuki', 'Kette Junzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Pinan Yondan']
-						],
-						[
-								'group' => $adults,
-								'ordering' => 6,
-								'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Pinan Godan']
-						],
-						[
-								'group' => $adults,
-								'ordering' => 7,
-								'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Pinan Godan', 'Naihanchi']
-						],
-						[
-								'group' => $adults,
-								'ordering' => 8,
-								'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Pinan Godan', 'Kushanku']
+								'group' => 'Kinder',
+								'programs' => [
+										[
+												'ordering' => 1,
+												'contents' => ['Sonobazuki', 'Junzuki', 'Jodanuke', 'Gedanbarai', 'Sanbon Kumite 1', 'Kihon Kata']
+										],
+										[
+												'ordering' => 2,
+												'contents' => ['Junzuki', 'Gyakuzuki', 'Junzuki no Tsukkomi', 'Sotouke', 'Uchiuke', 'Orangegurt', 'Sanbon Kumite Kinder 2', 'Pinan Nidan']
+										],
+										[
+												'ordering' => 3,
+												'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Shutouke', 'Uchiuke', 'Grüngurt', 'Sanbon Kumite 5', 'Ohyo Kumite Ipponme', 'Pinan Shodan']
+										],
+										[
+												'ordering' => 4,
+												'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Blaugurt Kinder', 'Sanbon Kumite 7', 'Sanbon Kumite 3', 'Ohyo Kumite Nihonme', 'Pinan Sandan']
+										],
+										[
+												'ordering' => 5,
+												'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Shutouke', 'Violettgurt', 'Sanbon Kumite 8', 'Sanbon Kumite 10', 'Ohyo Kumite Sanbonme', 'Pinan Yondan']
+										],
+										[
+												'ordering' => 6,
+												'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Violettgurt', 'Braungurt 1', 'Ohyo Kumite Yohonme', 'Ohyo Kumite Gohonme', 'Kihon Kumite Ipponme', 'Pinan Godan', 'Freikata', 'Jiyu Kumite']
+										],
+										[
+												'ordering' => 7,
+												'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Violettgurt', 'Braungurt Kinder 2', 'Ohyo Kumite Gohonme', 'Ohyo Kumite Ropponme', 'Kihon Kumite Ipponme', 'Kihon Kumite Nihonme', 'Pinan Godan', 'Naihanchi', 'Freikata', 'Jiyu Kumite']
+										],
+										[
+												'ordering' => 8,
+												'contents' => ['Junzuki', 'Kette Junzuki', 'Gyakuzuki', 'Kette Gyakuzuki', 'Junzuki no Tsukkomi', 'Kette Junzuki no Tsukkomi', 'Gyakuzuki no Tsukkomi', 'Kette Gyakuzuki no Tsukkomi', 'Tobikomizuki', 'Nagashizuki', 'Braungurt 3', 'Ohyo Kumite Ropponme', 'Ohyo Kumite Nanahonme', 'Kihon Kumite Ipponme', 'Kihon Kumite Nihonme', 'Kihon Kumite Sanbonme', 'Pinan Godan', 'Kushanku', 'Freikata', 'Freikata', 'Jiyu Kumite']
+										],
+								]
 						],
 				];
 
-				foreach ($allPrograms as $program) {
-						$examProgram = $this->findExamProgram($program['group'], $program['ordering']);
-						$this->linkContents($examProgram, $program['contents']);
+				foreach ($all as $entry) {
+						foreach ($entry['programs'] as $program) {
+								$examProgram = $this->findExamProgram($entry['group'], $program['ordering']);
+								$this->linkContents($examProgram, $program['contents']);
+						}
 				}
 		}
 
@@ -273,10 +362,14 @@ class ContentExamProgramSeeder extends Seeder
 		public function linkContents($program, $contentNames)
 		{
 				$contents = Content::whereIn('name', $contentNames)->get(['id']);
-				// foreach ($contents as $content) {
-				// 		error_log($content);
-				// }
-				$program->contents()->attach($contents);
-				$program->save();
+				$i = 1;
+				foreach ($contents as $contentId) {
+						ExamProgramEntry::insert([
+							'content_id' => $contentId,
+							'exam_program_id' => $program->id,
+							'ordering' => $i
+						]);
+						$i++;
+				}
 		}
 }

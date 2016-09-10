@@ -55,10 +55,10 @@
 								</tr>
 						</thead>
 						<tbody>
-								@foreach ($program->contents as $content)
+								@foreach ($program->entries as $entry)
 										<tr>
-												<td>{{$content->name}}</td>
-												<td>{{$content->description}}</td>
+												<td>{{$entry->content->name}}</td>
+												<td>{{$entry->content->description}}</td>
 										</tr>
 								@endforeach
 						</tbody>

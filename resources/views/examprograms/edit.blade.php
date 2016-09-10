@@ -18,12 +18,12 @@
 												</tr>
 										</thead>
 										<tbody>
-												@foreach ($program->contents as $content)
+												@foreach ($program->entries as $entry)
 														<tr>
-																<td>{{$content->name}}</td>
-																<td>{{$content->description}}</td>
+																<td>{{$entry->content->name}}</td>
+																<td>{{$entry->content->description}}</td>
 																<td>
-														        <form action="{{ url('examprograms/'.$program->id.'/contents/'.$content->id) }}" method="POST">
+														        <form action="{{ url('examprograms/'.$program->id.'/entries/'.$entry->id) }}" method="POST">
 														            {{ csrf_field() }}
 														            {{ method_field('DELETE') }}
 														            <button type="submit" class="btn btn-danger">
