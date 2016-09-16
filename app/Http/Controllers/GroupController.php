@@ -25,7 +25,7 @@ class GroupController extends Controller
 		public function findByName($name)
 		{
 				$groups = $this->groupRepo->all();
-				$activeGroup = ($name) ? $groupRepo->findByName($name) : $groups->first();
+				$activeGroup = ($name) ? $this->groupRepo->findByName($name) : $groups->first();
 
 		    return ($activeGroup === null) ?
 						redirect('groups/new') :

@@ -21,7 +21,7 @@
 												@foreach ($program->entries as $entry)
 														<tr>
 																<td class="col-md-3">{{$entry->content->name}}</td>
-																<td class="col-md-8">{{$entry->content->description}}</td>
+																<td class="col-md-8"><p class="small">{{$entry->content->description}}</p></td>
 																<td class="col-md-1">
 														        <form action="{{ url('examprograms/'.$program->id.'/entries/'.$entry->id) }}" method="POST">
 														            {{ csrf_field() }}
@@ -43,7 +43,7 @@
 									<div class="row">
 										<div class="col-xs-10">
 												<h5>{{$content->name}}</h5>
-												<p>{{$content->description}}</p>
+												<p class="small">{{$content->description}}</p>
 										</div>
 										<div class="col-xs-2">
 												<script>

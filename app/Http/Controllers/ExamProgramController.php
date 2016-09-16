@@ -65,7 +65,7 @@ class ExamProgramController extends Controller
 								]);
 						}
 				}
-				return redirect('examprograms?groupName='.$program->group->name.'&beltId='.$program->belt->id);
+				return redirect('examprograms/'.$program->id.'/edit');
 		}
 
 		public function delete(ExamProgram $program, ExamProgramEntry $entry)
