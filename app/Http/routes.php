@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('/media', 'MediaController@create');
 	Route::post('/media/{media}', 'MediaController@delete');
 
-	Route::get('/examprograms', 'ExamProgramController@index');
+	Route::get('/examprograms', 'SyllabusController@index');
 });
 
 
@@ -56,7 +56,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 	Route::put('/groups/{group}', 'GroupController@update');
 	Route::delete('/groups/{group}', 'GroupController@delete');
 
-	Route::get('/examprograms/{program}/edit', 'ExamProgramController@edit');
-	Route::put('/examprograms/{program}', 'ExamProgramController@update');
-	Route::delete('/examprograms/{program}/entries/{entry}', 'ExamProgramController@delete');
+	Route::get('/examprograms/{program}/edit', 'SyllabusController@edit');
+	Route::put('/examprograms/{program}', 'SyllabusController@update');
+	Route::delete('/examprograms/{program}/entries/{entry}', 'SyllabusController@delete');
 });

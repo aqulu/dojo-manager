@@ -2,15 +2,15 @@
 
 namespace App\Repositories;
 
-use App\ExamProgram;
+use App\Syllabus;
 use App\Belt;
 use App\Group;
 
-class ExamProgramRepository
+class SyllabusRepository
 {
 		public function find(Belt $belt, Group $group)
 		{
-				return ExamProgram::where([
+				return Syllabus::where([
 							['group_id', $group->id],
 							['belt_id', $belt->id]
 					])->first();
@@ -18,6 +18,6 @@ class ExamProgramRepository
 
 		public function findById($id)
 		{
-				return ExamProgram::with(['entries'])->find($id);
+				return Syllabus::with(['entries'])->find($id);
 		}
 }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ExamProgram extends Model
+class Syllabus extends Model
 {
 		protected $fillable = ['belt_id', 'group_id'];
 
@@ -20,6 +20,6 @@ class ExamProgram extends Model
 
 		public function entries()
 		{
-				return $this->hasMany(ExamProgramEntry::class)->orderBy('ordering');
+				return $this->hasMany(SyllabusEntry::class)->orderBy('ordering');
 		}
 }

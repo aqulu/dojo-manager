@@ -5,8 +5,8 @@ use Illuminate\Database\Seeder;
 use App\Belt;
 use App\Category;
 use App\Content;
-use App\ExamProgram;
-use App\ExamProgramEntry;
+use App\Syllabus;
+use App\SyllabusEntry;
 use App\Group;
 use App\User;
 
@@ -23,9 +23,9 @@ class DatabaseSeeder extends Seeder
 				$this->call(ContentsTableSeeder::class);
 				$this->call(BeltsTableSeeder::class);
 				$this->call(GroupsTableSeeder::class);
-				$this->call(ExamProgramsTableSeeder::class);
+				$this->call(SyllabusTableSeeder::class);
 				$this->call(UsersTableSeeder::class);
-				$this->call(ContentExamProgramSeeder::class);
+				$this->call(ContentSyllabusSeeder::class);
     }
 }
 
@@ -230,7 +230,7 @@ class GroupsTableSeeder extends Seeder
 		}
 }
 
-class ExamProgramsTableSeeder extends Seeder
+class SyllabusTableSeeder extends Seeder
 {
 		public function run()
 		{
@@ -238,7 +238,7 @@ class ExamProgramsTableSeeder extends Seeder
 				$belts = Belt::all();
 				foreach ($groups as $group) {
 						foreach ($belts as $belt) {
-								ExamProgram::insert(['group_id' => $group->id, 'belt_id' => $belt->id]);
+								Syllabus::insert(['group_id' => $group->id, 'belt_id' => $belt->id]);
 						}
 				}
 		}
@@ -263,7 +263,7 @@ class UsersTableSeeder extends Seeder
 		}
 }
 
-class ContentExamProgramSeeder extends Seeder
+class ContentSyllabusSeeder extends Seeder
 {
 		public function run()
 		{
@@ -346,14 +346,14 @@ class ContentExamProgramSeeder extends Seeder
 
 				foreach ($all as $entry) {
 						foreach ($entry['programs'] as $program) {
-								$examProgram = $this->findExamProgram($entry['group'], $program['ordering']);
-								$this->linkContents($examProgram, $program['contents']);
+								$syllabus = $this->findSyllabus($entry['group'], $program['ordering']);
+								$this->linkContents($syllabus, $program['contents']);
 						}
 				}
 		}
 
-		public function findExamProgram($groupName, $beltOrdering) {
-				return ExamProgram::where([
+		public function findSyllabus($groupName, $beltOrdering) {
+				return Syllabus::where([
 						['group_id', Group::where('name', $groupName)->first()->id],
 						['belt_id', Belt::where('ordering', $beltOrdering)->first()->id]
 				])->first();
@@ -364,9 +364,9 @@ class ContentExamProgramSeeder extends Seeder
 				$i = 1;
 				foreach ($contentNames as $contentName) {
 						$content = Content::where('name', $contentName)->first();
-						ExamProgramEntry::insert([
+						SyllabusEntry::insert([
 							'content_id' => $content->id,
-							'exam_program_id' => $program->id,
+							'syllabus_id' => $program->id,
 							'ordering' => $i
 						]);
 						$i++;

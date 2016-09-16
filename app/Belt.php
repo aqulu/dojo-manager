@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Belt extends Model
 {
-		public function examPrograms()
+		public function sylabus()
 		{
-				return $this->hasMany(ExamProgram::class);
+				return $this->hasMany(Syllabus::class);
 		}
 
 		public function users()

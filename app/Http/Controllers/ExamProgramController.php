@@ -8,27 +8,27 @@ use App\Http\Requests;
 
 use App\Repositories\BeltRepository;
 use App\Repositories\GroupRepository;
-use App\Repositories\ExamProgramRepository;
+use App\Repositories\SyllabusRepository;
 use App\Repositories\ContentRepository;
-use App\ExamProgram;
-use App\ExamProgramEntry;
+use App\Syllabus;
+use App\SyllabusEntry;
 use App\Belt;
 use App\Group;
 use App\User;
 use App\Content;
 
-class ExamProgramController extends Controller
+class SyllabusController extends Controller
 {
-		protected $examProgramRepo;
+		protected $syllabusRepo;
 		protected $beltRepo;
 		protected $groupRepo;
 		protected $contentRepo;
 
-		public function __construct(ExamProgramRepository $examProgramRepo, BeltRepository $beltRepo, GroupRepository $groupRepo, ContentRepository $contentRepo)
+		public function __construct(SyllabusRepository $syllabusRepo, BeltRepository $beltRepo, GroupRepository $groupRepo, ContentRepository $contentRepo)
 		{
 				$this->beltRepo = $beltRepo;
 				$this->groupRepo = $groupRepo;
-				$this->examProgramRepo = $examProgramRepo;
+				$this->syllabusRepo = $syllabusRepo;
 				$this->contentRepo = $contentRepo;
 		}
 
@@ -40,11 +40,11 @@ class ExamProgramController extends Controller
 				return view('examprograms.index', [
 					'groups' => $this->groupRepo->all(),
 					'belts' => $this->beltRepo->all(),
-					'program' => $this->examProgramRepo->find($belt, $group)
+					'program' => $this->syllabusRepo->find($belt, $group)
 				]);
 		}
 
-		public function edit(ExamProgram $program)
+		public function edit(Syllabus $program)
 		{
 				return view('examprograms.edit', [
 					'contents' => $this->contentRepo->all(),
@@ -54,13 +54,13 @@ class ExamProgramController extends Controller
 				]);
 		}
 
-		public function update(Request $request, ExamProgram $program)
+		public function update(Request $request, Syllabus $program)
 		{
 				if ($request->contents) {
 						foreach($request->contents as $content) {
-								ExamProgramEntry::insert([
+								SyllabusEntry::insert([
 										'content_id' => $content,
-										'exam_program_id' => $program->id,
+										'syllabus_id' => $program->id,
 										'ordering' => $program->entries->count() + 1
 								]);
 						}
@@ -68,7 +68,7 @@ class ExamProgramController extends Controller
 				return redirect('examprograms/'.$program->id.'/edit');
 		}
 
-		public function delete(ExamProgram $program, ExamProgramEntry $entry)
+		public function delete(Syllabus $program, SyllabusEntry $entry)
 		{
 				$entry->delete();
 				return redirect('examprograms/'.$program->id.'/edit');
