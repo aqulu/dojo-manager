@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-		<form action="{{ url('/examprograms') }}" method="GET">
+		<form action="{{ url('/syllabus') }}" method="GET">
 				<div class="row">
 						<div class="col-xs-4">
 								<h4>Group</h4>
@@ -45,7 +45,7 @@
 		@if($program)
 				<h1>
 					{{ $program->belt->label() }} {{ $program->group->name }}
-					<a href="{{ url('examprograms/'.$program->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+					<a href="{{ url('syllabus/'.$program->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
 				</h1>
 				<table class="table">
 						<thead>

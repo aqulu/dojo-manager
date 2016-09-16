@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Belt extends Model
 {
-		public function sylabus()
+		public function syllabi()
 		{
 				return $this->hasMany(Syllabus::class);
 		}

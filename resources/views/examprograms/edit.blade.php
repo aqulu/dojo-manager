@@ -7,7 +7,7 @@
 						<div class="col-sm-8">
 								<h1>
 									{{ $program->belt->label() }} {{ $program->group->name }}
-									<a href="{{ url( 'examprograms?groupName='.$program->group->name.'&beltId='.$program->belt->id ) }}" class="btn btn-primary"><i class="fa fa-chevron-left"></i></a>
+									<a href="{{ url( 'syllabus?groupName='.$program->group->name.'&beltId='.$program->belt->id ) }}" class="btn btn-primary"><i class="fa fa-chevron-left"></i></a>
 								</h1>
 								<table class="table">
 										<thead>
@@ -23,7 +23,7 @@
 																<td class="col-md-3">{{$entry->content->name}}</td>
 																<td class="col-md-8"><p class="small">{{$entry->content->description}}</p></td>
 																<td class="col-md-1">
-														        <form action="{{ url('examprograms/'.$program->id.'/entries/'.$entry->id) }}" method="POST">
+														        <form action="{{ url('syllabus/'.$program->id.'/entries/'.$entry->id) }}" method="POST">
 														            {{ csrf_field() }}
 														            {{ method_field('DELETE') }}
 														            <button type="submit" class="btn btn-danger"><i class="fa fa-minus"></i></button>
@@ -33,7 +33,7 @@
 												@endforeach
 										</tbody>
 								</table>
-								<form id="contents" action="{{ url('examprograms/'.$program->id) }}" method="POST">
+								<form id="contents" action="{{ url('syllabus/'.$program->id) }}" method="POST">
 				            {{ csrf_field() }}
 				            {{ method_field('PUT') }}
 								</form>

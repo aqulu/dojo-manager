@@ -12,7 +12,7 @@ class CreateSyllabusTable extends Migration
      */
     public function up()
     {
-        Schema::create('syllabus', function (Blueprint $table) {
+        Schema::create('syllabi', function (Blueprint $table) {
 						$table->increments('id');
             $table->integer('belt_id')->unsigned()->index();
             $table->integer('group_id')->unsigned()->index();
@@ -27,6 +27,6 @@ class CreateSyllabusTable extends Migration
      */
     public function down()
     {
-        Schema::drop('syllabus');
+        Schema::drop('syllabi');
     }
 }

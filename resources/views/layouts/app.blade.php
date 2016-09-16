@@ -24,7 +24,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/categories') }}">Overview</a></li>
                     <li><a href="{{ url('/media') }}">Media</a></li>
-                    <li><a href="{{ url('/examprograms') }}">Exams</a></li>
+                    <li><a href="{{ url('/syllabus') }}">Syllabus</a></li>
 										@if(Auth::user()->admin)
 		                    <li><a href="{{ url('/users') }}">Members</a></li>
 		                    <li><a href="{{ url('/groups') }}">Groups</a></li>

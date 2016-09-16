@@ -37,7 +37,7 @@ class SyllabusController extends Controller
 				$belt = ($request->beltId) ? $this->beltRepo->findById($request->beltId) : $this->beltRepo->findNext($request->user()->belt);
 				$group = ($request->groupName) ? $this->groupRepo->findByName($request->groupName) : $request->user()->group;
 
-				return view('examprograms.index', [
+				return view('syllabus.index', [
 					'groups' => $this->groupRepo->all(),
 					'belts' => $this->beltRepo->all(),
 					'program' => $this->syllabusRepo->find($belt, $group)
@@ -46,7 +46,7 @@ class SyllabusController extends Controller
 
 		public function edit(Syllabus $program)
 		{
-				return view('examprograms.edit', [
+				return view('syllabus.edit', [
 					'contents' => $this->contentRepo->all(),
 					'groups' => $this->groupRepo->all(),
 					'belts' => $this->beltRepo->all(),
@@ -65,12 +65,12 @@ class SyllabusController extends Controller
 								]);
 						}
 				}
-				return redirect('examprograms/'.$program->id.'/edit');
+				return redirect('syllabus/'.$program->id.'/edit');
 		}
 
 		public function delete(Syllabus $program, SyllabusEntry $entry)
 		{
 				$entry->delete();
-				return redirect('examprograms/'.$program->id.'/edit');
+				return redirect('syllabus/'.$program->id.'/edit');
 		}
 }
