@@ -12,10 +12,10 @@
 		<tbody>
 				@foreach ($category->contents as $content)
 						<tr>
-								<td><a href="{{ url('contents/'.$content->id) }}">{{$content->name}}</a></td>
-								<td>{{$content->description}}</td>
+								<td class="col-md-3"><a href="{{ url('contents/'.$content->id) }}">{{$content->name}}</a></td>
+								<td class="col-md-7">{{$content->description}}</td>
 								@if (Auth::user()->admin)
-										<td>
+										<td class="col-md-2">
 								        <form action="{{ url('contents/'.$content->id) }}" method="POST">
 								            {{ csrf_field() }}
 								            {{ method_field('DELETE') }}
@@ -56,6 +56,22 @@
                   </span>
               @endif
           </div>
+
+					<div class="form-group">
+							<ul class="nav nav-tabs">
+									  <li role="presentation" class="active">
+												<a href="">Available media</a>
+										</li>
+										<li>
+												<a href="">New video</a>
+										</li>
+							</ul>
+							@if ($allMedia)
+									@foreach($allMedia as $media)
+											@include('media/preview', ['media' => $media])
+									@endforeach
+							@endif
+					</div>
 
 					<button type="submit" class="btn btn-primary pull-right">
 						<span class="glyphicon glyphicon-floppy-disk"></span> Save

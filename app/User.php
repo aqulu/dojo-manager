@@ -38,4 +38,9 @@ class User extends Authenticatable
 		{
 				return $this->belongsTo(Group::class);
 		}
+
+		public function media()
+		{
+				return $this->hasMany(Media::class);
+		}
 }

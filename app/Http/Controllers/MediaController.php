@@ -9,6 +9,12 @@ use App\Media;
 
 class MediaController extends Controller
 {
+		protected $mediaRepo;
+
+		public function __construct(MediaRepository $mediaRepo)
+		{
+				$this->mediaRepo = $mediaRepo;
+		}
 
 		public function index()
 		{
@@ -36,11 +42,12 @@ class MediaController extends Controller
 
 		public function delete(Media $media)
 		{
-				if ($request->user()->admin) {
+				if ($request->user()->admin || $request->user->id === $media->user->id) {
 						$media->delete();
 				} else {
-					abort(403);
+						abort(403);
 				}
+
 				return redirect('media');
 		}
 }

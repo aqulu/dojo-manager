@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Repositories\CategoryRepository;
+use App\Repositories\MediaRepository;
 use App\Category;
 use App\Content;
 
@@ -12,9 +13,10 @@ class CategoryController extends Controller
 {
 		protected $categoryRepo;
 
-		public function __construct(CategoryRepository $categoryRepo)
+		public function __construct(CategoryRepository $categoryRepo, MediaRepository $mediaRepo)
 		{
 				$this->categoryRepo = $categoryRepo;
+				$this->mediaRepo = $mediaRepo;
 		}
 
 		public function index()
@@ -24,11 +26,13 @@ class CategoryController extends Controller
 
 		public function findByName($name)
 		{
+				$media = $this->mediaRepo->findPublic();
 				$allCategories = $this->categoryRepo->all();
 				$activeCategory = ($name) ? $allCategories->where('name', $name)->first() : $allCategories->first();
 		    return view('categories.index', [
 		        'categories' => $allCategories,
-						'active' => $activeCategory
+						'active' => $activeCategory,
+						'allMedia' => $media
 		    ]);
 		}
 
