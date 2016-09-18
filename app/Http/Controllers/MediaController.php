@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Media;
+use App\Repositories\MediaRepository;
 
 class MediaController extends Controller
 {

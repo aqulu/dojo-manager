@@ -34,7 +34,13 @@ class SyllabusController extends Controller
 
 		public function index(Request $request)
 		{
-				$belt = ($request->beltId) ? $this->beltRepo->findById($request->beltId) : $this->beltRepo->findNext($request->user()->belt);
+				$allBelts = $this->beltRepo->all();
+
+				if ($request->beltId) {
+					$belt = $this->beltRepo->findById($request->beltId);
+				} else {
+					$belt = ($request->user()->belt) ? $request->user()->belt : $allBelts->first();
+				}
 				$group = ($request->groupName) ? $this->groupRepo->findByName($request->groupName) : $request->user()->group;
 
 				return view('syllabus.index', [
