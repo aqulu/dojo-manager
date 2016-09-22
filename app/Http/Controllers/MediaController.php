@@ -27,21 +27,20 @@ class MediaController extends Controller
 		{
 				$this->validate($request, [
 						'title' => 'required|max:255',
-						'url' => 'required',
-						'public' => 'required'
+						'url' => 'required'
 				]);
 
-				$media = new Media;
-				$media->title = $request->title;
-				$media->public = $request->public;
-				$media->url = $request->url;
-				$media->save();
-				Auth::user()->media()->attach($media->id);
+				Media::insert([
+					'title'		=> $request->title,
+					'public'	=> !!($request->public),
+					'url'			=> $request->url,
+					'user_id'	=> $request->user()->id
+				]);
 
 				return redirect('/media');
 		}
 
-		public function delete(Media $media)
+		public function delete(Request $request, Media $media)
 		{
 				if ($request->user()->admin || $request->user->id === $media->user->id) {
 						$media->delete();
