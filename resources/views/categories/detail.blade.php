@@ -55,25 +55,8 @@
                   </span>
               @endif
           </div>
-					<div class="row">
-							<div class="form-group">
-									<ul class="nav nav-tabs">
-											  <li role="presentation" class="active">
-														<a href="">Verfügbare Videos</a>
-												</li>
-												<li>
-														<a href="">Neues Video</a>
-												</li>
-									</ul>
-									@if ($allMedia)
-											@foreach($allMedia as $media)
-													@include('media/preview', ['media' => $media])
-											@endforeach
-									@endif
-							</div>
-					</div>
 					<button type="submit" class="btn btn-primary pull-right">
-							<span class="glyphicon glyphicon-floppy-disk"></span> Speichern
+							<span class="glyphicon glyphicon-floppy-disk"></span> Hinzufügen
 					</button>
 				</form>
 	  </div>
