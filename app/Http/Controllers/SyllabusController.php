@@ -39,7 +39,7 @@ class SyllabusController extends Controller
 				if ($request->beltId) {
 					$belt = $this->beltRepo->findById($request->beltId);
 				} else {
-					$belt = ($request->user()->belt) ? $request->user()->belt : $allBelts->first();
+					$belt = ($request->user()->belt) ? $this->beltRepo->findNext($request->user()->belt) : $allBelts->first();
 				}
 				$group = ($request->groupName) ? $this->groupRepo->findByName($request->groupName) : $request->user()->group;
 
