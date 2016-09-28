@@ -37,13 +37,13 @@
 												checked
 										@endif
 										>
-									Public
+									Öffentlich
 							</label>
-							<p class="small">If selected, your video can be seen by other people</p>
+							<p class="small">Das Video ist für alle Benutzer sichtbar, falls aktiviert</p>
 					</div>
 
 					<button type="submit" class="btn btn-primary pull-right">
-						<span class="glyphicon glyphicon-floppy-disk"></span> Save
+						<span class="glyphicon glyphicon-floppy-disk"></span> Speichern
 					</button>
 				</form>
 

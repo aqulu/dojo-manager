@@ -10,7 +10,7 @@
               {{ csrf_field() }}
 
               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                  <label for="email" class="control-label">E-Mail Address</label>
+                  <label for="email" class="control-label">E-Mail Addresse</label>
 
 									<div class="input-group input-group-lg">
 											<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
@@ -24,7 +24,7 @@
               </div>
 
               <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                  <label for="password" class="control-label">Password</label>
+                  <label for="password" class="control-label">Passwort</label>
 									<div class="input-group input-group-lg">
 											<span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                   		<input id="password" type="password" class="form-control" name="password">
@@ -39,7 +39,7 @@
 
               <div class="form-group">
                   <label>
-                      <input type="checkbox" name="remember"> Remember Me
+                      <input type="checkbox" name="remember"> Angemeldet bleiben
                   </label>
 									<button type="submit" class="btn btn-primary pull-right">
 										<i class="fa fa-btn fa-sign-in"></i> Login
@@ -48,8 +48,8 @@
           </form>
 
 					<div class="row top-margin">
-							<a class="btn btn-link" href="{{ url('/register') }}">Register</a><br />
-							<a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+							<a class="btn btn-link" href="{{ url('/register') }}">Registrieren</a><br />
+							<a class="btn btn-link" href="{{ url('/password/reset') }}">Password vergessen?</a>
 					</div>
         </div>
     </div>

@@ -22,14 +22,14 @@
 											@if ($user->group)
 													{{ $user->group->name }}
 											@else
-													No group
+													Keine Gruppe
 											@endif
 									</td>
 									<td>
 											@if ($user->belt)
 													{{$user->belt->label()}}
 											@else
-													No belt
+													Keine Graduierung
 											@endif
 									</td>
 									<td>
@@ -40,7 +40,7 @@
 													|
 											@endif
 											@if ($user->instructor)
-													Instructor
+													Instruktor
 											@endif
 									</td>
 									@if (Auth::user()->admin)
@@ -48,9 +48,9 @@
 									        <form action="{{ url('users/'.$user->id) }}" method="POST">
 									            {{ csrf_field() }}
 									            {{ method_field('DELETE') }}
-															<a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+															<a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
 									            <button type="submit" class="btn btn-danger">
-									                <i class="fa fa-btn fa-trash"></i> Delete
+									                <i class="fa fa-trash"></i>
 									            </button>
 									        </form>
 											</td>

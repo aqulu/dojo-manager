@@ -22,12 +22,12 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/categories') }}">Overview</a></li>
-                    <li><a href="{{ url('/media') }}">Media</a></li>
-                    <li><a href="{{ url('/syllabus') }}">Syllabus</a></li>
+                    <li><a href="{{ url('/categories') }}">Übersicht</a></li>
+										<li><a href="{{ url('/media') }}">Videos</a></li>
+                    <li><a href="{{ url('/syllabus') }}">Prüfungsprogramm</a></li>
 										@if(Auth::user()->admin)
-		                    <li><a href="{{ url('/users') }}">Members</a></li>
-		                    <li><a href="{{ url('/groups') }}">Groups</a></li>
+		                    <li><a href="{{ url('/users') }}">Mitglieder</a></li>
+		                    <li><a href="{{ url('/groups') }}">Gruppen</a></li>
 										@endif
                 </ul>
 
@@ -36,7 +36,7 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/register') }}">Registrieren</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -49,7 +49,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/media') }}"><i class="fa fa-btn fa-upload"></i>My Uploads</a></li>
+                                <li><a href="{{ url('/media') }}"><i class="fa fa-btn fa-upload"></i>Meine Uploads</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

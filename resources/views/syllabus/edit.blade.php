@@ -5,10 +5,10 @@
 		@if($program)
 				<div class="row">
 						<div class="col-sm-8">
-								<h1>
+								<h2>
 									{{ $program->belt->label() }} {{ $program->group->name }}
-									<a href="{{ url( 'syllabus?groupName='.$program->group->name.'&beltId='.$program->belt->id ) }}" class="btn btn-primary"><i class="fa fa-chevron-left"></i></a>
-								</h1>
+									<a href="{{ url( 'syllabus?groupName='.$program->group->name.'&beltId='.$program->belt->id ) }}" class="btn btn-primary pull-right"><i class="fa fa-chevron-left"></i></a>
+								</h2>
 								<table class="table">
 										<thead>
 												<tr>
@@ -59,7 +59,7 @@
 																						'<tbody id="newcontents">' +
 																						'</tbody>' +
 																				'</table>' +
-																				'<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> Save</button>';
+																				'<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-floppy-o"></i> Speichern</button>';
 														var rowId = 0;
 														function addRow(contentId, name, description) {
 																if (rowId === 0) {

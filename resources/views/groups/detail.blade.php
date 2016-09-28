@@ -3,8 +3,8 @@
 		{{ method_field('DELETE') }}
 		<h3>
 				{{$group->name}}
-				<button type="submit" class="btn btn-danger pull-right"><i class="fa fa-btn fa-trash"></i></button>
-				<a href="{{ url('groups/'.$active->id.'/edit') }}" class="btn btn-default pull-right" role="button"><i class="fa fa-btn fa-pencil"></i></a>
+				<button type="submit" class="btn btn-danger pull-right"><i class="fa fa-btn fa-trash"></i> Löschen</button>
+				<a href="{{ url('groups/'.$active->id.'/edit') }}" class="btn btn-default pull-right" role="button"><i class="fa fa-btn fa-pencil"></i> Bearbeiten</a>
 		</h3>
 </form>
 <table class="table">
@@ -39,9 +39,9 @@
 								        <form action="{{ url('users/'.$user->id) }}" method="POST">
 								            {{ csrf_field() }}
 								            {{ method_field('DELETE') }}
-														<a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+														<a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
 								            <button type="submit" class="btn btn-danger">
-								                <i class="fa fa-btn fa-trash"></i> Delete
+								                <i class="fa fa-trash"></i>
 								            </button>
 								        </form>
 										</td>

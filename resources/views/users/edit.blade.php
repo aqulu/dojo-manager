@@ -4,11 +4,11 @@
 
 <div class="container">
 		<div class="row">
-				<div class="col-md-2">
-						<a href="{{ url('users') }}">< Back to all users</a>
+				<div class="col-md-4">
+						<a href="{{ url('users') }}">< Zurück zur Benutzerübersicht</a>
 				</div>
 				@if (Auth::user()->admin)
-						<div class="col-md-1 col-md-offset-9">
+						<div class="col-md-1 col-md-offset-7">
 								<a href="{{ url('users/'.$user->id) }}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-chevron-left"></span></a>
 						</div>
 				@endif
@@ -19,7 +19,7 @@
             {{ method_field('PUT') }}
 						<div class="row">
 		            <div class="col-md-6 form-group{{ $errors->has('firstname') ? ' has-error' : '' }}">
-		                <label for="firstname" class="control-label">Firstname</label>
+		                <label for="firstname" class="control-label">Vorname</label>
 
 										<div class="input-group input-group-lg">
 		                    <input id="firstname" type="text" class="form-control" name="firstname" value="{{ $user->firstname }}">
@@ -33,7 +33,7 @@
 
 
 			          <div class="col-md-6 form-group{{ $errors->has('lastname') ? ' has-error' : '' }}">
-			              <label for="lastname" class="control-label">Lastname</label>
+			              <label for="lastname" class="control-label">Nachname</label>
 
 										<div class="input-group input-group-lg">
 			                  <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $user->lastname }}">
@@ -47,13 +47,13 @@
 						</div>
 
 			      <div class="form-group{{ $errors->has('belt') ? ' has-error' : '' }}">
-			          <label for="belt" class="control-label">Belt</label>
+			          <label for="belt" class="control-label">Graduierung</label>
 								<select id="belt" name="belt" class="form-control">
 										<option
 											@if(!($user->belt))
 													selected
 											@endif
-											value="">None</option>
+											value="">Keine</option>
 										@foreach($belts as $belt)
 												<option
 												@if($user->belt && $user->belt->id == $belt->id)
@@ -65,7 +65,7 @@
 			      </div>
 
 			      <div class="form-group{{ $errors->has('group') ? ' has-error' : '' }}">
-			          <label for="group" class="control-label">Group</label>
+			          <label for="group" class="control-label">Gruppe</label>
 								<select id="group" name="group" class="form-control">
 										<option
 										@if (!$user->group)
@@ -97,13 +97,13 @@
 												checked
 										@endif
 										>
-										Instructor
+										Instruktor
 								</label>
 			      </div>
 
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary pull-right">
-								<i class="fa fa-btn fa-floppy-o"></i> Save
+								<i class="fa fa-btn fa-floppy-o"></i> Speichern
 							</button>
 						</div>
 				</form>

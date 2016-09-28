@@ -17,13 +17,13 @@
     @include('common.errors')
 
 		<div class="panel panel-default">
-			  <div class="panel-heading"><span class="glyphicon glyphicon-plus"></span> Add media</div>
+			  <div class="panel-heading"><span class="glyphicon glyphicon-plus"></span> Video hinzufügen</div>
 			  <div class="panel-body">
 						<form action="{{ url('media') }}" method="POST">
 							{{ csrf_field() }}
 
 		          <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-		              <label for="title" class="control-label">Title</label>
+		              <label for="title" class="control-label">Titel</label>
 		              <input id="title" type="text" class="form-control" name="title" value="{{ old('title') }}" placeholder="Title">
 		              @if ($errors->has('title'))
 		                  <span class="help-block">
@@ -45,13 +45,13 @@
 				      <div class="form-group">
 									<label>
 											<input type="checkbox" id="public" name="public">
-											Public
+											Öffentlich
 									</label>
-									<p class="small">If selected, your video can be seen by other people</p>
+									<p class="small">Das Video ist für alle Benutzer sichtbar, falls aktiviert</p>
 				      </div>
 
 							<button type="submit" class="btn btn-primary pull-right">
-								<span class="glyphicon glyphicon-floppy-disk"></span> Save
+								<span class="glyphicon glyphicon-floppy-disk"></span> Speichern
 							</button>
 						</form>
 			  </div>

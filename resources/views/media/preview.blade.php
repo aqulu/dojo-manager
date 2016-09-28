@@ -6,12 +6,12 @@
 						<a href="{{ $media->url }}" target="_blank">{{ $media->title }}</a>
 						</h3>
 		      <p>
-						Uploaded by: {{ $media->user->firstname . ' ' . $media->user->lastname }}<br />
+						von: {{ $media->user->firstname . ' ' . $media->user->lastname }}<br />
 						<label><input type="checkbox"
 							@if($media->public)
 									checked
 							@endif
-							disabled> Public</label>
+							disabled> Öffentlich</label>
 					</p>
 					<br />
 		      <p>

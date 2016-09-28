@@ -4,7 +4,7 @@
 <div class="container top-margin">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-					<h1>Reset Password</h1>
+					<h1>Passwort Reset</h1>
             @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
@@ -15,7 +15,7 @@
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="control-label">E-Mail Address</label>
+                    <label for="email" class="control-label">E-Mail Addresse</label>
 										<div class="input-group input-group-lg">
 												<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
                     		<input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
@@ -29,9 +29,9 @@
                 </div>
 
                 <div class="form-group">
-										<a class="btn btn-link" href="{{ url('/login') }}">Back to login</a>
+										<a class="btn btn-link" href="{{ url('/login') }}">Zurück zum Login</a>
                     <button type="submit" class="btn btn-primary pull-right">
-                        <i class="fa fa-btn fa-envelope"></i> Send Password Reset Link
+                        <i class="fa fa-btn fa-envelope"></i> Password Reset Link senden
                     </button>
                 </div>
             </form>

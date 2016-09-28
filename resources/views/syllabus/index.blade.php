@@ -5,10 +5,10 @@
 		<form action="{{ url('/syllabus') }}" method="GET">
 				<div class="row">
 						<div class="col-xs-4">
-								<h4>Group</h4>
+								<h4>Gruppe</h4>
 						</div>
 						<div class="col-xs-4">
-								<h4>Belt</h4>
+								<h4>Graduierung</h4>
 						</div>
 				</div>
 				<div class="row">
@@ -43,12 +43,12 @@
 		</form>
 
 		@if($program)
-				<h1>
+				<h2>
 					{{ $program->belt->label() }} {{ $program->group->name }}
 					@if(Auth::user()->admin)
-							<a href="{{ url('syllabus/'.$program->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+							<a href="{{ url('syllabus/'.$program->id.'/edit') }}" class="btn btn-default pull-right"><i class="fa fa-pencil"></i> Bearbeiten</a>
 					@endif
-				</h1>
+				</h2>
 				<table class="table">
 						<thead>
 								<tr>

@@ -15,7 +15,7 @@
 		</ul>
 
     @include('common.errors')
-		<h3>Create new group</h3>
+		<h3>Neue Gruppe erstellen</h3>
 		<form action="{{ url('groups') }}" method="POST">
 			{{ csrf_field() }}
 
@@ -30,7 +30,7 @@
       </div>
 
 			<button type="submit" class="btn btn-primary pull-right">
-				<span class="glyphicon glyphicon-floppy-disk"></span> Save
+				<span class="glyphicon glyphicon-floppy-disk"></span> Speichern
 			</button>
 		</form>
 </div>

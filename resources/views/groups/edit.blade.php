@@ -39,7 +39,7 @@
 	      </div>
 
 				<button type="submit" class="btn btn-primary pull-right">
-					<span class="glyphicon glyphicon-floppy-disk"></span> Save
+					<span class="glyphicon glyphicon-floppy-disk"></span> Speichern
 				</button>
 		</form>
 </div>
