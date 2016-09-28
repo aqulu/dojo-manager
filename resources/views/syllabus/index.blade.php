@@ -45,7 +45,9 @@
 		@if($program)
 				<h1>
 					{{ $program->belt->label() }} {{ $program->group->name }}
-					<a href="{{ url('syllabus/'.$program->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+					@if(Auth::user()->admin)
+							<a href="{{ url('syllabus/'.$program->id.'/edit') }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+					@endif
 				</h1>
 				<table class="table">
 						<thead>

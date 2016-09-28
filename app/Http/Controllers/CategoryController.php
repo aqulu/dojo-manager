@@ -48,6 +48,6 @@ class CategoryController extends Controller
 				$content->category_id = $category->id;
 				$content->save();
 
-				return $this->findByName($request, $category->name);
+				return redirect('categories/'.$category->name);
 		}
 }

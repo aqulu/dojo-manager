@@ -18,11 +18,13 @@ class ContentController extends Controller
 				$this->contentRepo = $contentRepo;
 		}
 
-		public function index(Content $content)
+		public function index(Request $request, Content $content)
 		{
 				$ids = $content->media->map(function($media) { return $media->id; });
-				$allMedia = Media::whereNotIn('id', $ids)->orderBy('created_at', 'desc')->get();
-		    return view('contents.index', [ 'content' => $content, 'allMedia' => $allMedia ]);
+		    return view('contents.index', [
+						'content' => $content,
+						'allMedia' => ($request->user()->admin) ? Media::whereNotIn('id', $ids)->orderBy('created_at', 'desc')->get() : null
+				]);
 		}
 
 		public function edit(Content $content)
@@ -42,7 +44,7 @@ class ContentController extends Controller
 				$content->description = $request->description;
 				$content->save();
 
-				return $this->index($content);
+				return redirect('contents/'.$content->id);
 		}
 
 		public function delete(Request $request, Content $content)

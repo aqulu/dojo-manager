@@ -35,17 +35,23 @@ class SyllabusController extends Controller
 		public function index(Request $request)
 		{
 				$allBelts = $this->beltRepo->all();
+				$allGroups = $this->groupRepo->all();
 
 				if ($request->beltId) {
-					$belt = $this->beltRepo->findById($request->beltId);
+						$belt = $this->beltRepo->findById($request->beltId);
 				} else {
-					$belt = ($request->user()->belt) ? $this->beltRepo->findNext($request->user()->belt) : $allBelts->first();
+						$belt = ($request->user()->belt) ? $this->beltRepo->findNext($request->user()->belt) : $allBelts->first();
 				}
-				$group = ($request->groupName) ? $this->groupRepo->findByName($request->groupName) : $request->user()->group;
+
+				if ($request->groupName) {
+						$group = $this->groupRepo->findByName($request->groupName);
+				} else {
+						$group = ($request->user()->group) ? $request->user()->group : $allGroups->first();
+				}
 
 				return view('syllabus.index', [
-					'groups' => $this->groupRepo->all(),
-					'belts' => $this->beltRepo->all(),
+					'groups' => $allGroups,
+					'belts' => $allBelts,
 					'program' => $this->syllabusRepo->find($belt, $group)
 				]);
 		}

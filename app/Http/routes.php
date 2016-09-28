@@ -24,8 +24,10 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/contents/{content}', 'ContentController@index');
 
 	Route::get('/media', 'MediaController@index');
+	Route::get('/media/{media}/edit', 'MediaController@edit');
 	Route::post('/media', 'MediaController@create');
-	Route::post('/media/{media}', 'MediaController@delete');
+	Route::put('/media/{media}', 'MediaController@update');
+	Route::delete('/media/{media}', 'MediaController@delete');
 
 	Route::get('/syllabus', 'SyllabusController@index');
 });

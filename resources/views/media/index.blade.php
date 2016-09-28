@@ -5,13 +5,16 @@
 		@if (count($media) > 0)
 				<div class="row">
 						@foreach ($media as $m)
-								@include('media/preview', ['media' => $m])
+								@if (Auth::user()->id === $m->user->id || Auth::user()->admin)
+										@include('media/admin', ['media' => $m])
+								@else
+										@include('media/preview', ['media' => $m])
+								@endif
 						@endforeach
 				</div>
 		@endif
 
     @include('common.errors')
-
 
 		<div class="panel panel-default">
 			  <div class="panel-heading"><span class="glyphicon glyphicon-plus"></span> Add media</div>

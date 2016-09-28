@@ -23,6 +23,32 @@ class MediaController extends Controller
 		    return view('media.index', [ 'media' => $media ]);
 		}
 
+		public function edit(Request $request, Media $media)
+		{
+				if ($request->user()->admin || $request->user()->id === $media->user->id) {
+						return view('media.edit', ['media' => $media]);
+				} else {
+						abort(403);
+				}
+		}
+
+		public function update(Request $request, Media $media)
+		{
+				if ($request->user()->admin || $request->user()->id === $media->user->id) {
+					$this->validate($request, [
+							'title' => 'required|max:255',
+							'url' => 'required'
+					]);
+					$media->title = $request->title;
+					$media->url = $request->url;
+					$media->public = !!($request->public);
+					$media->save();
+				} else {
+						abort(403);
+				}
+				return redirect('media');
+		}
+
 		public function create(Request $request)
 		{
 				$this->validate($request, [
@@ -42,7 +68,7 @@ class MediaController extends Controller
 
 		public function delete(Request $request, Media $media)
 		{
-				if ($request->user()->admin || $request->user->id === $media->user->id) {
+				if ($request->user()->admin || $request->user()->id === $media->user->id) {
 						$media->delete();
 				} else {
 						abort(403);

@@ -19,9 +19,8 @@
 								        <form action="{{ url('contents/'.$content->id) }}" method="POST">
 								            {{ csrf_field() }}
 								            {{ method_field('DELETE') }}
-								            <button type="submit" class="btn btn-danger">
-								                <i class="fa fa-btn fa-trash"></i> Delete
-								            </button>
+														<a href="{{ url('contents/'.$content->id.'/edit') }}" class="btn btn-default" role="button"><i class="fa fa-pencil"></i></a>
+								            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
 								        </form>
 										</td>
 								@endif
@@ -56,25 +55,25 @@
                   </span>
               @endif
           </div>
-
-					<div class="form-group">
-							<ul class="nav nav-tabs">
-									  <li role="presentation" class="active">
-												<a href="">Available media</a>
-										</li>
-										<li>
-												<a href="">New video</a>
-										</li>
-							</ul>
-							@if ($allMedia)
-									@foreach($allMedia as $media)
-											@include('media/preview', ['media' => $media])
-									@endforeach
-							@endif
+					<div class="row">
+							<div class="form-group">
+									<ul class="nav nav-tabs">
+											  <li role="presentation" class="active">
+														<a href="">Available media</a>
+												</li>
+												<li>
+														<a href="">New video</a>
+												</li>
+									</ul>
+									@if ($allMedia)
+											@foreach($allMedia as $media)
+													@include('media/preview', ['media' => $media])
+											@endforeach
+									@endif
+							</div>
 					</div>
-
 					<button type="submit" class="btn btn-primary pull-right">
-						<span class="glyphicon glyphicon-floppy-disk"></span> Save
+							<span class="glyphicon glyphicon-floppy-disk"></span> Save
 					</button>
 				</form>
 	  </div>

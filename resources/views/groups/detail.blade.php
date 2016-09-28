@@ -3,8 +3,8 @@
 		{{ method_field('DELETE') }}
 		<h3>
 				{{$group->name}}
-				<button type="submit" class="btn btn-danger pull-right"><i class="fa fa-btn fa-trash"></i> Delete</button>
-				<a href="{{ url('groups/'.$active->id.'/edit') }}" class="btn btn-default pull-right" role="button"><i class="fa fa-btn fa-pencil"></i> Edit</a>
+				<button type="submit" class="btn btn-danger pull-right"><i class="fa fa-btn fa-trash"></i></button>
+				<a href="{{ url('groups/'.$active->id.'/edit') }}" class="btn btn-default pull-right" role="button"><i class="fa fa-btn fa-pencil"></i></a>
 		</h3>
 </form>
 <table class="table">
