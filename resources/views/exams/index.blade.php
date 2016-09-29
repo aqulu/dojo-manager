@@ -9,7 +9,9 @@
 								<th>Gruppe</th>
 								<th>Datum</th>
 								<th></th>
-								<th>Aktionen</th>
+								@if(Auth::user()->admin)
+										<th>Aktionen</th>
+								@endif
 						</tr>
 				</thead>
 				<tbody>
@@ -18,16 +20,20 @@
 										<td class="col-md-3">{{ $exam->group->name }}</td>
 										<td class="col-md-3">{{ DateTime::createFromFormat('Y-n-j', $exam->examination_date)->format('j.n.Y') }} {{$exam->examination_time}} Uhr</td>
 										<td class="col-md-3">
-												nominiert?
+												@if(Auth::user()->getNextExam() && $exam->id === Auth::user()->getNextExam()->id)
+													<b>Du wurdest für diesen Termin aufgeboten!
+												@endif
 										</td>
-										<td class="col-md-2">
-								        <form action="{{ url('exams/'.$exam->id) }}" method="POST">
-								            {{ csrf_field() }}
-								            {{ method_field('DELETE') }}
-														<a href="{{ url('exams/'.$exam->id.'/edit') }}" class="btn btn-default" role="button"><i class="fa fa-pencil"></i></a>
-								            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
-								        </form>
-										</td>
+										@if(Auth::user()->admin)
+												<td class="col-md-2">
+										        <form action="{{ url('exams/'.$exam->id) }}" method="POST">
+										            {{ csrf_field() }}
+										            {{ method_field('DELETE') }}
+																<a href="{{ url('exams/'.$exam->id.'/edit') }}" class="btn btn-default" role="button"><i class="fa fa-pencil"></i></a>
+										            <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+										        </form>
+												</td>
+										@endif
 								</tr>
 						@endforeach
 				</tbody>

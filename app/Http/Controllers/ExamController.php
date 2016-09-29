@@ -62,7 +62,8 @@ class ExamController extends Controller
 				Exam::insert([
 					'group_id' => $request->group,
 					'examination_date' => DateTime::createFromFormat('j.n.Y', $request->date),
-					'examination_time' => $request->time
+					'examination_time' => $request->time,
+					'remarks' => $request->remarks
 				]);
 
 				return redirect('exams');
