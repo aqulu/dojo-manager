@@ -15,8 +15,8 @@
 Route::auth();
 
 Route::group(['middleware' => ['auth']], function() {
-	Route::get('/', 'CategoryController@index');
-	Route::get('/home', 'HomeController@index');
+	Route::get('/', 'WelcomeController@index');
+	Route::get('/welcome', 'WelcomeController@index');
 
 	Route::get('/categories', 'CategoryController@index');
 	Route::get('/categories/{name}', 'CategoryController@findByName');

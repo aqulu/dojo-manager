@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DateTime;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+		public function getNextExam()
+		{
+				return $this->exams->filter(function($value) {
+						return DateTime::createFromFormat('Y-n-j H:i', $value->examination_date.' '.$value->examination_time)->getTimestamp() > time();
+				})->first();
+		}
+
 		public function fullname()
 		{
 				return $this->firstname . ' ' . $this->lastname;
@@ -42,5 +50,10 @@ class User extends Authenticatable
 		public function media()
 		{
 				return $this->hasMany(Media::class);
+		}
+
+		public function exams()
+		{
+				return $this->belongsToMany('App\Exam');
 		}
 }
