@@ -44,6 +44,7 @@
 
 		@if($program)
 				<h2>
+					@include('common/belt', ['color' => $program->belt->color_hex, 'height' => '30px', 'style' => null ])
 					{{ $program->belt->label() }} {{ $program->group->name }}
 					@if(Auth::user()->admin)
 							<a href="{{ url('syllabus/'.$program->id.'/edit') }}" class="btn btn-default pull-right"><i class="fa fa-pencil"></i> Bearbeiten</a>

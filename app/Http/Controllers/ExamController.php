@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Repositories\ExamRepository;
 use App\Repositories\GroupRepository;
 use App\Exam;
+use Redirect;
 
 class ExamController extends Controller
 {
@@ -81,12 +82,12 @@ class ExamController extends Controller
 						'userId'	=> 'required',
 				]);
 				$exam->nominees()->attach($request->userId);
-				return redirect('exams/'.$exam->id.'/edit');
+				return Redirect::back();
 		}
 
 		public function removeNominee(Exam $exam, $userId)
 		{
 				$exam->nominees()->detach($userId);
-				return redirect('exams/'.$exam->id.'/edit');
+				return Redirect::back();
 		}
 }

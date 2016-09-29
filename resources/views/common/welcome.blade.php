@@ -12,11 +12,7 @@
 		@endif
 
 		@if($belt)
-				<svg height="200px" viewbox="0 0 100 75">
-					<path d="M 0 20 q 50 10 100 0" style="stroke: {{ $belt->color_hex }}" stroke-width="7" fill="none" />
-					<path d="M 10 75 q 40 -100 80 0" style="stroke: {{ $belt->color_hex }}" stroke-width="7" fill="none" />
-					<circle cx="50" cy="25" r="10" style="fill: {{ $belt->color_hex }}"  />
-				</svg>
+				@include('common/belt', ['color' => $belt->color_hex, 'height' => '200px', 'style' => null ])
 		@endif
 </div>
 @endsection

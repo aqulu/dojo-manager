@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Repositories\UserRepository;
 use App\Repositories\BeltRepository;
 use App\Repositories\GroupRepository;
+use App\Repositories\ExamRepository;
 use App\User;
 use App\Belt;
 use App\Group;
@@ -18,12 +19,14 @@ class UserController extends Controller
 		protected $userRepo;
 		protected $groupRepo;
 		protected $beltRepo;
+		protected $examRepo;
 
-		public function __construct(UserRepository $userRepo, GroupRepository $groupRepo, BeltRepository $beltRepo)
+		public function __construct(UserRepository $userRepo, GroupRepository $groupRepo, BeltRepository $beltRepo, ExamRepository $examRepo)
 		{
 				$this->userRepo = $userRepo;
 				$this->groupRepo = $groupRepo;
 				$this->beltRepo = $beltRepo;
+				$this->examRepo = $examRepo;
 		}
 
 		public function index()
@@ -33,7 +36,9 @@ class UserController extends Controller
 
 		public function detail(User $user)
 		{
-			return view('users.detail', [ 'user' => $user ]);
+			$nextExam = $user->getNextExam();
+			$possibleExam = ($nextExam) ? null : $this->examRepo->findNext(time(), $user->group);
+			return view('users.detail', [ 'user' => $user, 'nextExam' => $nextExam, 'possibleExam' => $possibleExam ]);
 		}
 
 		public function edit(User $user)

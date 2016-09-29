@@ -16,27 +16,44 @@
 		@if ($user)
 				<h1>{{ $user->fullname() }}</h1>
 				<div class="row">
-						<div class="col-md-2 col-md-offset-1">
-								@if ($user->belt)
-										{{ $user->belt->label()}}
+						<div class="col-xs-11 col-xs-offset-1">
+								<h4>
+										@if ($user->belt)
+												{{ $user->belt->label()}}
+										@else
+												Keine Graduierung
+										@endif
+								</h4>
+								<h4>
+										@if ($user->group)
+												{{ $user->group->name }}
+										@else
+												Keine Gruppe
+										@endif
+								</h4>
+								<h4>{{ $user->email }}</h4>
+								<h4>
+										@if ($user->admin)
+												Admin
+										@endif
+										@if ($user->admin && $user->instructor)
+												|
+										@endif
+										@if ($user->instructor)
+												Instruktor
+										@endif
+								</h4>
+
+								@if ($nextExam)
+										Nächste Prüfung am {{ DateTime::createFromFormat('Y-n-j', $nextExam->examination_date)->format('j.n.Y') }}
 								@else
-										Keine Graduierung
-								@endif
-								<br />
-								@if ($user->group)
-										Gruppe {{ $user->group->name }}
-								@else
-										Keine Gruppe
-								@endif
-								<br />
-								@if ($user->admin)
-										Admin
-								@endif
-								@if ($user->admin && $user->instructor)
-										|
-								@endif
-								@if ($user->instructor)
-										Instruktor
+										@if($possibleExam)
+												<form action="{{ url('exams/'.$possibleExam->id.'/nominees') }}" method="POST">
+														{{ csrf_field() }}
+		          							<input type="hidden" name="userId" value="{{ $user->id }}">
+														<button type="submit" class="btn btn-primary">Für nächste Prüfung aufbieten</button>
+												</form>
+										@endif
 								@endif
 						</div>
 				</div>
