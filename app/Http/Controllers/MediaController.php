@@ -19,8 +19,7 @@ class MediaController extends Controller
 
 		public function index()
 		{
-				$media = Media::all();
-		    return view('media.index', [ 'media' => $media ]);
+		    return view('media.index', [ 'media' => $this->mediaRepo->all() ]);
 		}
 
 		public function edit(Request $request, Media $media)
