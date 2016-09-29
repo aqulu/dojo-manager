@@ -24,15 +24,16 @@ class ExamController extends Controller
 		public function index()
 		{
 				$exams = $this->examRepo->all();
-				foreach ($exams as $exam) {
-						error_log($exam->examination_date);
-				}
 		    return view('exams.index', [ 'exams' => $this->examRepo->all(), 'groups' => $this->groupRepo->all() ]);
 		}
 
 		public function edit(Request $request, Exam $exam)
 		{
-				return view('exams.edit', ['exam' => $exam]);
+				return view('exams.edit', [
+					'exam' => $exam,
+					'groups' => $this->groupRepo->all(),
+					'users' => $exam->group->users->diff($exam->nominees)
+				]);
 		}
 
 		public function update(Request $request, Exam $exam)
@@ -43,7 +44,7 @@ class ExamController extends Controller
 						'date'	=> 'required|date'
 				]);
 				$exam->group_id = $request->group;
-				$exam->examination_date = DateTime::createFromFormat($request->date);
+				$exam->examination_date = DateTime::createFromFormat('j.n.Y', $request->date);
 				$exam->examination_time = $request->time;
 				$exam->remarks = $request->remarks;
 				$exam->save();
@@ -71,5 +72,20 @@ class ExamController extends Controller
 		{
 				$exam->delete();
 				return redirect('exams');
+		}
+
+		public function addNominee(Request $request, Exam $exam)
+		{
+				$this->validate($request, [
+						'userId'	=> 'required',
+				]);
+				$exam->nominees()->attach($request->userId);
+				return redirect('exams/'.$exam->id.'/edit');
+		}
+
+		public function removeNominee(Exam $exam, $userId)
+		{
+				$exam->nominees()->detach($userId);
+				return redirect('exams/'.$exam->id.'/edit');
 		}
 }

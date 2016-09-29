@@ -8,7 +8,6 @@
 						<tr>
 								<th>Gruppe</th>
 								<th>Datum</th>
-								<th>Zeit</th>
 								<th></th>
 								<th>Aktionen</th>
 						</tr>
@@ -17,8 +16,8 @@
 						@foreach ($exams as $exam)
 								<tr>
 										<td class="col-md-3">{{ $exam->group->name }}</td>
-										<td class="col-md-5">{{ $exam->examination_date }} {{$exam->examination_time}}</td>
-										<td class="col-md-1">
+										<td class="col-md-3">{{ DateTime::createFromFormat('Y-n-j', $exam->examination_date)->format('j.n.Y') }} {{$exam->examination_time}} Uhr</td>
+										<td class="col-md-3">
 												nominiert?
 										</td>
 										<td class="col-md-2">
@@ -75,11 +74,11 @@
 		          <div class="form-group{{ $errors->has('remarks') ? ' has-error' : '' }}">
 		              <label for="remarks" class="control-label">Bemerkungen</label>
 		              <textarea id="remarks" type="text" class="form-control" name="remarks" value="{{ old('remarks') }}" placeholder="Rechtzeitig erscheinen, kein Picknick, sonstiges..."></textarea>
+									@if ($errors->has('remarks'))
 		                  <span class="help-block">
-												@if ($errors->has('remarks'))
 		                      <strong>{{ $errors->first('remarks') }}</strong>
 		                  </span>
-		              @endif
+									@endif
 		          </div>
 							<button type="submit" class="btn btn-primary pull-right">
 									<span class="glyphicon glyphicon-floppy-disk"></span> Hinzufügen

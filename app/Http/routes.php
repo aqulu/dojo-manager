@@ -34,6 +34,10 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/exams', 'ExamController@index');
 });
 
+Route::group(['middleware' => ['auth', 'instructor']], function() {
+	Route::post('/exams/{exam}/nominees', 'ExamController@addNominee');
+	Route::delete('/exams/{exam}/nominees/{userId}', 'ExamController@removeNominee');
+});
 
 Route::group(['middleware' => ['auth', 'admin']], function() {
 	Route::post('/categories/{category}/contents', 'CategoryController@addContent');
@@ -67,5 +71,4 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 	Route::get('/exams/{exam}/edit', 'ExamController@edit');
 	Route::put('/exams/{exam}', 'ExamController@update');
 	Route::delete('/exams/{exam}', 'ExamController@delete');
-
 });
