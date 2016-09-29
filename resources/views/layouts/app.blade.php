@@ -26,6 +26,7 @@
 										<li><a href="{{ url('/media') }}">Videos</a></li>
                     <li><a href="{{ url('/syllabus') }}">Prüfungsprogramm</a></li>
 										@if(Auth::user()->admin)
+												<li><a href="{{ url('/exams') }}">Prüfungstermine</a></li>
 		                    <li><a href="{{ url('/users') }}">Mitglieder</a></li>
 		                    <li><a href="{{ url('/groups') }}">Gruppen</a></li>
 										@endif

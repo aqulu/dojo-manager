@@ -71,7 +71,7 @@
 										@if (!$user->group)
 												selected
 										@endif
-										value="">None</option>
+										value="">Keine</option>
 										@foreach($groups as $group)
 												<option
 												@if ($user->group && $user->group->id == $group->id)
