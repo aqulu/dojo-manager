@@ -41,7 +41,7 @@ class ExamController extends Controller
 		{
 				$this->validate($request, [
 						'group'	=> 'required',
-						'time'	=> 'required|max:5',
+						'time'	=> 'required|regex:/^[0-2]?[0-9]:{1}[0-5][0-9]$/',
 						'date'	=> 'required|date'
 				]);
 				$exam->group_id = $request->group;
@@ -56,18 +56,18 @@ class ExamController extends Controller
 		{
 				$this->validate($request, [
 						'group'	=> 'required',
-						'time'	=> 'required|max:5',
+						'time'	=> 'required|regex:/^[0-2]?[0-9]:{1}[0-5][0-9]$/',
 						'date'	=> 'required|date'
 				]);
 
-				Exam::insert([
+				$exam = $this->examRepo->insert([
 					'group_id' => $request->group,
 					'examination_date' => DateTime::createFromFormat('j.n.Y', $request->date),
 					'examination_time' => $request->time,
 					'remarks' => $request->remarks
 				]);
 
-				return redirect('exams');
+				return redirect('exams/'.$exam->id.'/edit');
 		}
 
 		public function delete(Request $request, Exam $exam)

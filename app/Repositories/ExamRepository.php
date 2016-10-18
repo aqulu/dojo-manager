@@ -22,4 +22,10 @@ class ExamRepository
 						return null;
 				}
 		}
+
+		public function insert($attributes) {
+				$exam = new Exam($attributes);
+				$exam->save();
+				return $exam;
+		}
 }

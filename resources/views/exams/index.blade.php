@@ -21,7 +21,7 @@
 										<td class="col-md-3">{{ DateTime::createFromFormat('Y-n-j', $exam->examination_date)->format('j.n.Y') }} {{$exam->examination_time}} Uhr</td>
 										<td class="col-md-3">
 												@if(Auth::user()->getNextExam() && $exam->id === Auth::user()->getNextExam()->id)
-													<b>Du wurdest für diesen Termin aufgeboten!
+													<b>Du wurdest für diesen Termin aufgeboten!</b>
 												@endif
 										</td>
 										@if(Auth::user()->admin)
@@ -57,7 +57,7 @@
 											@foreach($groups as $group)
 													<option
 													@if (old('group') && old('group') == $group->id)
-													selected 
+													selected
 													@endif
 													value="{{$group->id}}">{{$group->name}}</option>
 											@endforeach
