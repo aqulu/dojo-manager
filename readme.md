@@ -10,6 +10,8 @@ Second approach to create a dojo-management software, formerly run as project "o
     Database of your choice (mariadb)
 
 ## Setup
+
+    create database "dojo-manager"
     
     mkdir bootstrap/cache (composer install fails in my case, if I don't do this)
     composer install
