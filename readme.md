@@ -1,7 +1,7 @@
 # Dojo-Manager
 
-Second approach to create a dojo-management software, formerly run as project "online-senpai"
-
+Second approach to create a dojo-management software, formerly run as project "online-senpai".
+Code-quality is still kinda crappy, since it's my first approch creating something with the Laravel framework.
 
 ## Prerequisites
 
