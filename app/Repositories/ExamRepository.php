@@ -14,8 +14,12 @@ class ExamRepository
 
 		public function findNext($time, $group)
 		{
-				$now = new DateTime();
-				$now->setTimestamp($time);
-				return Exam::where('group_id', $group->id)->whereDate('examination_date', '>=', $now)->orderBy('examination_date')->first();
+				if ($group) {
+						$now = new DateTime();
+						$now->setTimestamp($time);
+						return Exam::where('group_id', $group->id)->whereDate('examination_date', '>=', $now)->orderBy('examination_date')->first();
+				} else {
+						return null;
+				}
 		}
 }

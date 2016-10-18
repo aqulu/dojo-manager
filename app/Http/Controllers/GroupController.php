@@ -37,9 +37,8 @@ class GroupController extends Controller
 
 		public function createNew()
 		{
-				$groups = Group::all();
 		    return view('groups.new', [
-		        'groups' => $groups
+		        'groups' => $this->groupRepo->all()
 		    ]);
 		}
 
