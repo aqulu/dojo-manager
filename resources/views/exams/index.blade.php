@@ -49,9 +49,17 @@
 				      <div class="form-group{{ $errors->has('group') ? ' has-error' : '' }}">
 				          <label for="group" class="control-label">Gruppe</label>
 									<select id="group" name="group" class="form-control">
-											<option selected value="">Keine</option>
+											<option
+											@if (!old('group'))
+											selected
+											@endif
+											value="">Keine</option>
 											@foreach($groups as $group)
-													<option value="{{$group->id}}">{{$group->name}}</option>
+													<option
+													@if (old('group') && old('group') == $group->id)
+													selected 
+													@endif
+													value="{{$group->id}}">{{$group->name}}</option>
 											@endforeach
 									</select>
 				      </div>
