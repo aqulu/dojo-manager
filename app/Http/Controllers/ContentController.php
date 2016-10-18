@@ -6,16 +6,19 @@ use Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Repositories\ContentRepository;
+use App\Repositories\MediaRepository;
 use App\Content;
 use App\Media;
 
 class ContentController extends Controller
 {
 		protected $contentRepo;
+		protected $mediaRepo;
 
-		public function __construct(ContentRepository $contentRepo)
+		public function __construct(ContentRepository $contentRepo, MediaRepository $mediaRepo)
 		{
 				$this->contentRepo = $contentRepo;
+				$this->mediaRepo = $mediaRepo;
 		}
 
 		public function index(Request $request, Content $content)
@@ -23,15 +26,17 @@ class ContentController extends Controller
 				$ids = $content->media->map(function($media) { return $media->id; });
 		    return view('contents.index', [
 						'content' => $content,
-						'allMedia' => ($request->user()->admin) ? Media::whereNotIn('id', $ids)->orderBy('created_at', 'desc')->get() : null
+						'allMedia' => ($request->user()->admin) ? $this->mediaRepo->findUnattached($ids) : null
 				]);
 		}
 
 		public function edit(Content $content)
 		{
 				$ids = $content->media->map(function($media) { return $media->id; });
-				$allMedia = Media::whereNotIn('id', $ids)->orderBy('created_at', 'desc')->get();
-		    return view('contents.edit', [ 'content' => $content, 'allMedia' => $allMedia ]);
+		    return view('contents.edit', [
+					'content' => $content,
+					'allMedia' => $this->mediaRepo->findUnattached($ids)
+				]);
 		}
 
 		public function update(Request $request, Content $content)

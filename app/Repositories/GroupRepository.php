@@ -15,4 +15,11 @@ class GroupRepository
 		{
 				return Group::where('name', $name)->first();
 		}
+
+		public function insert($name) {
+				$group = new Group;
+				$group->name = $name;
+				$group->save();
+				return $group;
+		}
 }

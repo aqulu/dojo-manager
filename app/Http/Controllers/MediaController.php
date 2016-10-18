@@ -38,10 +38,12 @@ class MediaController extends Controller
 							'title' => 'required|max:255',
 							'url' => 'required'
 					]);
-					$media->title = $request->title;
-					$media->url = $request->url;
-					$media->public = !!($request->public);
-					$media->save();
+
+					$this->mediaRepo->update($media, [
+						'title'		=> $request->title,
+						'public'	=> !!($request->public),
+						'url'			=> $request->url,
+					]);
 				} else {
 						abort(403);
 				}
@@ -55,7 +57,7 @@ class MediaController extends Controller
 						'url' => 'required'
 				]);
 
-				Media::insert([
+				$this->mediaRepo->insert([
 					'title'		=> $request->title,
 					'public'	=> !!($request->public),
 					'url'			=> $request->url,
@@ -68,7 +70,7 @@ class MediaController extends Controller
 		public function delete(Request $request, Media $media)
 		{
 				if ($request->user()->admin || $request->user()->id === $media->user->id) {
-						$media->delete();
+						$this->mediaRepo->delete($media);
 				} else {
 						abort(403);
 				}

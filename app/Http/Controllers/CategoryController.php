@@ -42,11 +42,11 @@ class CategoryController extends Controller
 						'name' => 'required|max:255'
 				]);
 
-				$content = new Content;
-				$content->name = $request->name;
-				$content->description = $request->description;
-				$content->category_id = $category->id;
-				$content->save();
+				$content = $this->contentRepo->insert([
+					'name' => $request->name,
+					'description' => $request->description,
+					'category_id' => $category->id
+				]);
 
 				return redirect('categories/'.$category->name);
 		}

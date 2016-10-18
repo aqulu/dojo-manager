@@ -10,9 +10,6 @@ use App\Repositories\BeltRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\ExamRepository;
 use App\User;
-use App\Belt;
-use App\Group;
-
 
 class UserController extends Controller
 {
@@ -43,9 +40,7 @@ class UserController extends Controller
 
 		public function edit(User $user)
 		{
-				$groups = $this->groupRepo->all();
-				$belts = $this->beltRepo->all();
-				return view('users.edit', ['user' => $user, 'belts' => $belts, 'groups' => $groups]);
+				return view('users.edit', ['user' => $user, 'belts' => $this->beltRepo->all(), 'groups' => $this->groupRepo->all()]);
 		}
 
 		public function update(Request $request, User $user)
@@ -55,29 +50,18 @@ class UserController extends Controller
 						'lastname' => 'required|max:255'
 				]);
 
-				// TODO more comfortable laravel way to manage relationships?
-				$user->firstname = $request->firstname;
-				$user->lastname = $request->lastname;
-				if ($request->belt) {
-					$user->belt()->associate($request->belt);
-				} else {
-					$user->belt()->dissociate();
-				}
-				if ($request->group) {
-					$user->group()->associate($request->group);
-				} else {
-					$user->group()->dissociate();
-				}
-				$user->admin = ($request->admin) ? true : false;
-				$user->instructor = ($request->instructor) ? true : false;
-
-				$user->save();
+				$this->userRepo->update($user, $request->belt, $request->group, [
+						'firstname' => $request->firstname,
+						'lastname' => $request->lastname,
+						'admin' => ($request->admin) ? true : false,
+						'instructor' => ($request->instructor) ? true : false
+				]);
 
 				return redirect('users/'.$user->id);
 		}
 
 		public function delete(User $user) {
-				$user->delete();
+				$this->userRepo->delete($user);
 				return redirect('users');
 		}
 }

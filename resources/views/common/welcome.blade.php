@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container text-center">
+		<h1>{{ url()->current() }}</h1>
+
 		<h1>Willkommen, {{ Auth::user()->fullname() }}</h1>
 
 		@if($exam)

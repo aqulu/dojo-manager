@@ -15,4 +15,10 @@ class ContentRepository
 		{
 			return Content::orderBy('category_id')->get();
 		}
+
+		public function insert($attributes) {
+				$content = new Content($attributes);
+				$content->save();
+				return $content;
+		}
 }

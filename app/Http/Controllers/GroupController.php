@@ -47,9 +47,8 @@ class GroupController extends Controller
 				$this->validate($request, [
 						'name' => 'required|max:255'
 				]);
-				Group::create(['name' => $request->name]);
-
-				return redirect('groups/'.$request->name);
+				$group = $this->groupRepo->insert($name);
+				return redirect('groups/'.$group->name);
 		}
 
 		public function edit(Group $group)

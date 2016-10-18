@@ -9,26 +9,25 @@ use App\Http\Requests;
 use App\Repositories\BeltRepository;
 use App\Repositories\GroupRepository;
 use App\Repositories\SyllabusRepository;
+use App\Repositories\SyllabusEntryRepository;
 use App\Repositories\ContentRepository;
 use App\Syllabus;
 use App\SyllabusEntry;
-use App\Belt;
-use App\Group;
-use App\User;
-use App\Content;
 
 class SyllabusController extends Controller
 {
 		protected $syllabusRepo;
+		protected $syllabusEntryRepo;
 		protected $beltRepo;
 		protected $groupRepo;
 		protected $contentRepo;
 
-		public function __construct(SyllabusRepository $syllabusRepo, BeltRepository $beltRepo, GroupRepository $groupRepo, ContentRepository $contentRepo)
+		public function __construct(SyllabusRepository $syllabusRepo, SyllabusEntryRepository $syllabusEntryRepo, BeltRepository $beltRepo, GroupRepository $groupRepo, ContentRepository $contentRepo)
 		{
 				$this->beltRepo = $beltRepo;
 				$this->groupRepo = $groupRepo;
 				$this->syllabusRepo = $syllabusRepo;
+				$this->syllabusEntryRepo = $syllabusEntryRepo;
 				$this->contentRepo = $contentRepo;
 		}
 
@@ -70,7 +69,7 @@ class SyllabusController extends Controller
 		{
 				if ($request->contents) {
 						foreach($request->contents as $content) {
-								SyllabusEntry::insert([
+								$this->syllabusEntryRepo->insert([
 										'content_id' => $content,
 										'syllabus_id' => $program->id,
 										'ordering' => $program->entries->count() + 1
@@ -82,7 +81,7 @@ class SyllabusController extends Controller
 
 		public function delete(Syllabus $program, SyllabusEntry $entry)
 		{
-				$entry->delete();
+				$this->syllabusEntryRepo->delete($entry);
 				return redirect('syllabus/'.$program->id.'/edit');
 		}
 }

@@ -10,4 +10,28 @@ class UserRepository
 		{
 				return User::orderBy('group_id')->orderBy('lastname')->get();
 		}
+
+		public function update($user, $belt, $group, $attributes) {
+				$user->fill($attributes);
+
+				if ($belt) {
+					$user->belt()->associate($belt);
+				} else {
+					$user->belt()->dissociate();
+				}
+
+				if ($group) {
+					$user->group()->associate($group);
+				} else {
+					$user->group()->dissociate();
+				}
+
+				$user->save();
+
+				return $user;
+		}
+
+		public function delete($user) {
+				$user->delete();
+		}
 }
