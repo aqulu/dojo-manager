@@ -26,7 +26,7 @@ class CategoryController extends Controller
 
 		public function findByName($name)
 		{
-				$media = $this->mediaRepo->findPublic();
+				$media = $this->mediaRepo->findPublic(null);
 				$allCategories = $this->categoryRepo->all();
 				$activeCategory = ($name) ? $allCategories->where('name', $name)->first() : $allCategories->first();
 		    return view('categories.index', [

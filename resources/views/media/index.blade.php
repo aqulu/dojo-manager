@@ -2,6 +2,8 @@
 
 @section('content')
 <div class="container">
+		<h1>{{ ($title) ? $title : 'Alle Videos' }}</h1>
+
 		@if (count($media) > 0)
 				<div class="row">
 						@foreach ($media as $m)

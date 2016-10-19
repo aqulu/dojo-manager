@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/contents/{content}', 'ContentController@index');
 
 	Route::get('/media', 'MediaController@index');
+	Route::get('/media/uploads', function() { return view('media.uploads'); });
 	Route::get('/media/{media}/edit', 'MediaController@edit');
 	Route::post('/media', 'MediaController@create');
 	Route::put('/media/{media}', 'MediaController@update');

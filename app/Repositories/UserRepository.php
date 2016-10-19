@@ -11,7 +11,13 @@ class UserRepository
 				return User::orderBy('group_id')->orderBy('lastname')->get();
 		}
 
-		public function update($user, $belt, $group, $attributes) {
+		public function findById($id)
+		{
+				return User::find($id);
+		}
+
+		public function update($user, $belt, $group, $attributes)
+		{
 				$user->fill($attributes);
 
 				if ($belt) {
@@ -31,7 +37,8 @@ class UserRepository
 				return $user;
 		}
 
-		public function delete($user) {
+		public function delete($user)
+		{
 				$user->delete();
 		}
 }

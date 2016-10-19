@@ -11,14 +11,13 @@ class MediaRepository
 				return Media::all();
 		}
 
-		public function findPublic()
+		public function findPublic($id)
 		{
-				return Media::where('public', true)->get();
-		}
-
-		public function findByUser($id)
-		{
-				return Media::where('user_id', $id)->get();
+				$query = Media::where('public', true);
+				if ($id) {
+						$query->orWhere('user_id', $id);
+				}
+				return $query->get();
 		}
 
 		public function findUnattached($ids) {
