@@ -10,7 +10,7 @@
               {{ csrf_field() }}
 
               <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                  <label for="email" class="control-label">E-Mail Addresse</label>
+                  <label for="email" class="control-label">E-Mail Adresse</label>
 
 									<div class="input-group input-group-lg">
 											<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
