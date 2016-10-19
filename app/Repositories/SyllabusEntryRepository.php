@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\SyllabusEntry;
 
-class SyllabusRepository
+class SyllabusEntryRepository
 {
 		public function insert($attributes)
 		{
