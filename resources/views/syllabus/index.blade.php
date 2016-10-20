@@ -60,8 +60,10 @@
 						<tbody>
 								@foreach ($program->entries as $entry)
 										<tr>
-												<td><a href="{{ url('contents/'.$entry->id) }}" target="_blank">{{$entry->content->name}}</a></td>
+												<td><a href="#" data-toggle="modal" data-target="#content{{$entry->content->id}}" target="_blank">{{$entry->content->name}}</a></td>
 												<td>{{$entry->content->description}}</td>
+
+												@include('syllabus/preview', ['content' => $entry->content])
 										</tr>
 								@endforeach
 						</tbody>
