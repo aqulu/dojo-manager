@@ -7,11 +7,6 @@
 						</h3>
 		      <p>
 						von: {{ $media->user->firstname . ' ' . $media->user->lastname }}<br />
-						<label><input type="checkbox"
-							@if($media->public)
-									checked
-							@endif
-							disabled> Öffentlich</label>
 					</p>
 					<br />
 		      <p>
