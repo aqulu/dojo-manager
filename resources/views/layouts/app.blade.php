@@ -23,9 +23,9 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/categories') }}">Übersicht</a></li>
-										<li><a href="{{ url('/media') }}">Videos</a></li>
                     <li><a href="{{ url('/syllabus') }}">Prüfungsprogramm</a></li>
 										<li><a href="{{ url('/exams') }}">Prüfungstermine</a></li>
+										<li><a href="{{ url('/media') }}">Videos</a></li>
 										@if(Auth::user()->admin)
 		                    <li><a href="{{ url('/users') }}">Mitglieder</a></li>
 		                    <li><a href="{{ url('/groups') }}">Gruppen</a></li>
@@ -47,6 +47,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/media/uploads') }}"><i class="fa fa-btn fa-upload"></i>Meine Uploads</a></li>
+                                <li><a href="{{ url('/profile') }}"><i class="fa fa-btn fa-cog"></i>Einstellungen</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

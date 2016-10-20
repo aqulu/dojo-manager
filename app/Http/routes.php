@@ -33,6 +33,9 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/syllabus', 'SyllabusController@index');
 
 	Route::get('/exams', 'ExamController@index');
+
+	Route::get('/profile', 'ProfileController@index');
+	Route::put('/profile', 'ProfileController@update');
 });
 
 Route::group(['middleware' => ['auth', 'instructor']], function() {

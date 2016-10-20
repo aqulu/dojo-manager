@@ -60,7 +60,7 @@
 						<tbody>
 								@foreach ($program->entries as $entry)
 										<tr>
-												<td>{{$entry->content->name}}</td>
+												<td><a href="{{ url('contents/'.$entry->id) }}">{{$entry->content->name}}</a></td>
 												<td>{{$entry->content->description}}</td>
 										</tr>
 								@endforeach
