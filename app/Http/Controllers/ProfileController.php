@@ -32,12 +32,13 @@ class ProfileController extends Controller
 				]);
 
 				$user = $request->user();
-				$this->userRepo->update($user, $request->belt, $request->group, [
+				$this->userRepo->updateProfile($user, [
 						'firstname' => $request->firstname,
 						'lastname' => $request->lastname,
 						'email' => $request->email,
 						'password' => ($request->password) ? bcrypt($request->password) : $user->password
 				]);
-				return redirect('profile/index');
+
+				return redirect('profile');
 		}
 }

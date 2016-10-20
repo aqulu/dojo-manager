@@ -4,7 +4,7 @@
 
 <div class="container">
 		@if ($user)
-        <form id="userfrm" action="{{ url('users/'.$user->id) }}" method="POST">
+        <form id="userfrm" action="{{ url('profile') }}" method="POST">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
 						<div class="row">

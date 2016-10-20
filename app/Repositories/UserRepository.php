@@ -37,6 +37,13 @@ class UserRepository
 				return $user;
 		}
 
+		public function updateProfile($user, $attributes)
+		{
+				$user->fill($attributes);
+				$user->save();
+				return $user;
+		}
+
 		public function delete($user)
 		{
 				$user->delete();
