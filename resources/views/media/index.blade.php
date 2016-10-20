@@ -36,7 +36,7 @@
 
 		          <div class="form-group{{ $errors->has('url') ? ' has-error' : '' }}">
 		              <label for="url" class="control-label">URL</label>
-		              <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" placeholder="https://youtu.be/v=ajsf">
+		              <input id="url" type="text" class="form-control" name="url" value="{{ old('url') }}" placeholder="https://youtu.be/HvncJgJbqOc">
 		              @if ($errors->has('url'))
 		                  <span class="help-block">
 		                      <strong>{{ $errors->first('url') }}</strong>

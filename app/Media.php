@@ -15,13 +15,32 @@ class Media extends Model
 				return $this->belongsTo(User::class);
 		}
 
-		public function videoId()
+		public function thumbnail()
 		{
+				$placeholder = '{VIDID}';
+				$thumbnailUrl = 'https://img.youtube.com/vi/'. $placeholder .'/0.jpg';
 				$keyword = 'v=';
-				$delimiter = '&';
-				$pos = strpos($this->url, $keyword) + strlen($keyword);
-				$videoId = substr($this->url, $pos);
-				$delimPos = strpos($videoId, $delimiter);
-				return ($delimPos !== false) ? substr($videoId, 0, $delimPos) : $videoId;
+				if (strpos($this->url, 'youtube.com') !== false) {
+						$delimiter = '&';
+						$pos = strpos($this->url, $keyword) + strlen($keyword);
+						$videoId = substr($this->url, $pos);
+						$delimPos = strpos($videoId, $delimiter);
+
+						if ($delimPos !== false) {
+								$videoId = substr($videoId, $delimPos);
+						}
+				} else if (strpos($this->url, 'youtu.be') !== false) {
+						$pos = strpos($this->url, '/') + 1;
+
+						if (strpos($this->url, $keyword) !== false) {
+								$pos += strlen($keyword);
+						}
+
+						$videoId = substr($this->url, $pos);
+				} else {
+						$videoId = 'HvncJgJbqOc';
+				}
+
+				return str_replace($placeholder, $videoId, $thumbnailUrl);
 		}
 }

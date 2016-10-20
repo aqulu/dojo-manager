@@ -1,6 +1,6 @@
 <div class="col-sm-4 col-md-3">
 	  <div class="thumbnail">
-	    	<img src="http://img.youtube.com/vi/{{ $media->videoId() }}/0.jpg" alt="video thumbnail">
+	    	<img src="{{ $media->thumbnail() }}" alt="video thumbnail">
 		    <div class="caption">
         	<h3>
 						<a href="{{ $media->url }}" target="_blank">{{ $media->title }}</a>
@@ -15,7 +15,7 @@
 					</p>
 					<br />
 		      <p>
-						@yield('buttons')
+							@yield('buttons')
 					</p>
 		    </div>
 	  </div>
