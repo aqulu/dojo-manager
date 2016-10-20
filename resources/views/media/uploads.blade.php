@@ -1,1 +1,1 @@
-@include('media/index', [ 'media' => Auth::user()->media, 'title' => 'Meine Videos' ])
+@include('media/index', [ 'allMedia' => Auth::user()->media, 'title' => 'Meine Videos' ])
