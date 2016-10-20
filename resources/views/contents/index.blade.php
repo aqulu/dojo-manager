@@ -20,7 +20,7 @@
 				<h2 class="top-margin">Zugeordnete Videos</h2>
 				<div class="row">
 						@foreach($content->media as $media)
-								@include('media/preview', ['media' => $media])
+								@include('media/preview', ['media' => $media, 'editMode' => false])
 						@endforeach
 				</div>
 		@endif

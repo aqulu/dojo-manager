@@ -49,7 +49,7 @@
 				<h2>Zugeordnete Videos</h2>
 				<div class="row">
 						@foreach($content->media as $media)
-								@include('contents/attachedmedia', ['media' => $media, 'contentId' => $content->id ])
+								@include('contents/media', ['media' => $media, 'contentId' => $content->id, 'attached' => true ])
 						@endforeach
 				</div>
 		@endif
@@ -57,7 +57,7 @@
 			<h2 class="top-margin">Verfügbare Videos</h2>
 			<div class="row">
 					@foreach($allMedia as $m)
-							@include('contents/unattachedmedia', ['media' => $m, 'contentId' => $content->id ])
+							@include('contents/media', ['media' => $m, 'contentId' => $content->id, 'attached' => false ])
 					@endforeach
 			</div>
 		@endif

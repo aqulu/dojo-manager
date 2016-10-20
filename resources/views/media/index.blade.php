@@ -4,14 +4,10 @@
 <div class="container">
 		<h1>{{ ($title) ? $title : 'Alle Videos' }}</h1>
 
-		@if (count($media) > 0)
+		@if (count($allMedia) > 0)
 				<div class="row">
-						@foreach ($media as $m)
-								@if (Auth::user()->id === $m->user->id || Auth::user()->admin)
-										@include('media/admin', ['media' => $m])
-								@else
-										@include('media/preview', ['media' => $m])
-								@endif
+						@foreach ($allMedia as $media)
+								@include('media/preview', ['media' => $media, 'editMode' => true])
 						@endforeach
 				</div>
 		@endif
