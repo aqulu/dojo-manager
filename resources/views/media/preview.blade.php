@@ -2,9 +2,9 @@
 	  <div class="thumbnail">
 	    	<img src="{{ $media->thumbnail() }}" alt="video thumbnail">
 		    <div class="caption">
-        		<h3>
+        		<h5>
 								<a href="{{ $media->url }}" target="_blank">{{ $media->title }}</a>
-						</h3>
+						</h5>
 			      <p>
 							von: {{ $media->user->firstname . ' ' . $media->user->lastname }}<br />
 							@if($editMode)
